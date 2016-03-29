@@ -1,0 +1,17 @@
+// Layout Fonts
+//==============================================================================
+// Custom fonts for the site.
+
+
+// Chrome fix: display svg on chrome to produce smoother fonts
+
+/*
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	@font-face {
+		font-family: 'FONT-FAMILY-NAME';
+		src: url('../fonts/FONT-FILE-NAME.svg#FONT-FAMILY-NAME') format('svg');
+	}
+}
+
+*/

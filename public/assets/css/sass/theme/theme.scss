@@ -1,0 +1,34 @@
+// Theme styles 
+//==============================================================================
+
+//Base Styles
+
+    @import "common/fonts";
+    @import "common/typography";    
+    @import "common/forms"; 
+    @import "common/notices";
+
+// Plugin base styles
+
+    @import "plugins/slick";
+    @import "plugins/animate";
+    // @import "plugins/materialize/materialize";
+    @import "plugins/hierarchical-display";
+
+// Layout Styles
+
+    @import "layout/layout";
+    @import "layout/header";
+    @import "layout/sidebar";
+    @import "layout/footer";
+
+
+// Partials Styles
+
+    @import "partials/box";
+    @import "partials/section";
+    @import "partials/resources";
+    @import "partials/single";
+    @import "partials/mobile-menu";
+    @import "partials/responsive";
+

@@ -1,0 +1,34 @@
+.blog-post_author {
+	text-align: center;
+    margin: 30px 0px 30px 30px;
+    @include media-query(palm) {
+		margin: 0 30px 30px;
+    }
+	.blog-post_author_avatar {
+		margin-bottom: 15px;
+		display: inline-block;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	.blog-post_author_title {
+		@include link (1, $textcolor, $textcolor, $textcolor, 1, 0, 1);
+		display: block;
+		margin-bottom: 30px;
+	}
+}
+
+.blog-post_tags {
+	margin-bottom: 15px;
+	.blog-post_tag {
+		display: inline-block;
+		float: left;
+		font-size: 14px;
+		background-color: $bodyBg;
+		margin: 3px;
+		padding: 5px 10px;
+		border-radius: $brand-round*2+px;
+		a {
+			@include link (1, lighten($textcolor, 15%), lighten($textcolor, 15%), lighten($textcolor, 15%), 0, 0, 1);
+		}
+	}
+}

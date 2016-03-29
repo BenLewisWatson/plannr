@@ -1,0 +1,155 @@
+// File Title 
+//==============================================================================
+// Short comment regarding module use
+
+.box-container {
+	margin: 0 -30px;
+	overflow: auto;
+}
+
+.box {
+	background-color: #fff;
+  	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  	border-radius: $brand-round+px;
+  	overflow: hidden;
+	padding: 30px;
+	margin: 30px;
+  	transition: box-shadow .5s ease;
+	&:hover {
+  		// box-shadow: 0 3px 3px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.25);
+	}
+	&:focus {
+		outline: none;
+	}
+	&.box-hero {
+		padding: 0;
+		img {
+			width: 100%;
+			&:not(.mobile) {
+				display: block;
+			}
+		}
+		.box_thumbnail {
+			padding: 0px 0px 10px 0px;
+		}
+		.box_main {
+			// display: table;
+			// padding: 0px 10px 10px 10px;
+			.box_title, .box_content {
+				overflow: hidden;
+				margin: 0;
+			}
+			.box_title {
+			    padding: 0px 10px 10px 10px;
+			    height: 60px;
+			    // display: table;
+			    // vertical-align: middle;
+			}
+			.box_content {
+			    padding: 0px 10px 10px 10px;
+			    height: 90px;
+			}
+		}
+		.box_footer {
+			color: lighten($textcolor, 15%);
+			padding: 10px 10px 10px 10px;
+		    border-top: 1px solid #E0E0E0;
+		    line-height: 15px;
+			.fa-clock-o {
+				margin-right: 5px;
+			}
+		}
+	}
+	&.box-twitget {
+		font-size: 1.1em;
+	    background: #489cea;
+		color: #FFF;
+		padding: 50px;
+	    word-wrap: break-word;
+		h1, h2, h3, h4, h5, h6, h6 {
+			color: inherit;
+			margin: 0;
+			line-height: 1em;
+		}
+		a {
+			@include link(1, #FFF, #FFF, #FFF, 0, 1, 1);
+		}
+		.twitter_user {
+			display: table;
+			margin-bottom: 10px;
+			.twitter_avatar {
+				float: left;
+				margin-right: 10px;
+				img {
+					max-width: 64px;
+					max-height: 64px;
+				}
+			}
+			.twitter_userdetails {
+			    display: table-cell;
+			    vertical-align: middle;
+			    a {
+			    	text-decoration: none;
+			    }
+			}
+		}
+		.twitter_follow {
+			font-size: 1.1em;
+		}
+		.tweets {
+			margin: 15px 0;
+			position: relative;
+			.tweet {
+				.tweet_content {
+					margin-bottom: 15px;
+				}
+				.tweet_date {
+					color: #ecf0f1;
+				}
+			}
+		}
+	}
+	&.box-news {
+		margin: 60px 20px;
+		max-width: 330px;
+		transition: transform .5s ease, box-shadow .5s ease;
+		a {
+			@include link(1, $textcolor, $textcolor, $textcolor, 0, 0, 1);
+		}
+		.box_thumbnail {
+			max-height: 246px;
+		}
+		.box_title {
+			display: table;
+			a {
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+		&.box-news-big {
+			width: 560px;
+		}
+		&.slick-current.slick-active {
+			transform: scale(1.05);
+			box-shadow: 0 3px 3px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.25);
+		}
+	}
+	&.box-runescape {
+		.box_thumbnail {
+			padding-bottom: 0px;
+		}
+		.box_main {
+			padding: 10px;
+			.box_title {
+				padding: 10px;
+				height: auto;
+			}
+		}
+	}
+}
+
+// .active:nth-child(2n-1) {
+// 	.box-news {
+// 		transform: scale(1.05);
+// 	}
+// }

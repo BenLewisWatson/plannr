@@ -1,0 +1,37 @@
+// Form Styles
+//==============================================================================
+// Site wide styles for all form elements
+
+
+// Helpers 
+//==============================================================================
+input:focus, textarea:focus, select:focus { outline: 0; }
+
+select {
+	@include vendor(appearance, none);
+	// appearance: none resets any browser applied styling on form element. 
+	// only supported by Mozilla, Chrome and Safari 
+}
+
+// theme Specific styles 
+//==============================================================================
+
+.label {
+    display: block;
+}
+
+.input, .textarea {
+
+    &:hover {
+    }
+
+    &:focus {
+    }
+
+    &.error {
+    }
+
+    &.success {
+
+    }
+}

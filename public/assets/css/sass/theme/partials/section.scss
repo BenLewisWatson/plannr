@@ -1,0 +1,229 @@
+// File Title 
+//==============================================================================
+// Short comment regarding module use
+
+section {
+	background-color: $bodyBg;
+	overflow: auto;
+}
+
+.section-light {
+	position: relative;
+	background-color: #FFF;
+	&::after {
+		content: '';
+		display: block;
+		top: 0px;
+		bottom: 0px;
+		left: -50%;
+		right: -50%;
+		background-color: #FFF;
+	}
+}
+
+.section-title {
+	margin-bottom: $gutterWidth+px;
+}
+
+.section_img {
+	width: 50%;
+	img {
+		display: block;
+	}
+}
+
+.section_content {
+	box-sizing: border-box;
+	width: 50%;
+}
+
+@include mediaq-size($siteWidth) {
+	section {
+		.tl, .tr {
+			text-align: center;
+		}
+		.section_img {
+			display: block;
+			float: none;
+			width: auto;
+			img {
+				display: block;
+			}
+		}
+		.section_content {
+			display: block;
+			float: none;
+			margin: 0px;
+			box-sizing: border-box;
+			width: auto;
+			> .pl, > .pr {
+				padding: 30px;
+				overflow: hidden;
+			}
+			.va-inner {
+				display: block;
+				width: auto;
+			}
+		}
+
+	}
+	.section-content {
+		min-height: 200px;
+	}
+}
+
+.section-banner {
+	position: relative;
+	max-height: 450px;
+	overflow: initial;
+	text-align: right;
+	.section-banner_title {
+		font-size: 2em;
+		line-height: 2em;
+		font-weight: normal;
+	}
+	.section-banner_img {
+		img {
+			display: block;
+			max-height: 100%;
+			float: right;
+		}
+	}
+	.section-banner_content  {
+		background-color: rgba(255, 255, 255, 0.5);
+		padding: 60px 30px 30px;
+		min-height: 100%;
+		font-size: 14px;
+		line-height: 16px;
+		box-sizing: border-box;
+		text-align: left;
+		width: 35%;
+		p {
+			font-size: 1.15em;
+			line-height: 1.5em;
+		}
+		.btn {
+			max-width: 180px;
+		}
+	}
+}
+
+.section-homePageNews {
+	overflow: hidden;
+	.section-homePageNews_inner  {
+		position: relative;
+		width: 1900px;
+		margin: 0 auto;
+		@include mediaq-size(1900) {
+			left: 50%;
+			margin-left: -950px;
+		}
+		@include mediaq-size(460) {
+			width: auto;
+			left: auto;
+			margin-left: auto;
+		}
+	}
+	.homePageNews {
+		// max-height: 520px;
+	}
+	.homePageNews_arrow-left, .homePageNews_arrow-right {
+		cursor: pointer;
+		position: absolute;
+		height: 100%;
+		top: 0;
+		bottom: 0;
+		width: 50px;
+		font-size: 36px;
+		text-align: center;
+		color: #FFF;
+		text-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		transition: transform .5s ease-in-out;
+		transform: scale(1);
+		&:hover {
+			transform: scale(1.1);
+		}
+		.fa {
+			line-height: 500px;
+			vertical-align: middle;
+		}
+	}
+	.homePageNews_arrow-left {
+		left: 0px;
+	}
+	.homePageNews_arrow-right {
+		right: 0px;
+	}
+	.fa-arrows-h {
+		font-size: 1.5em;
+		line-height: 2em;
+		margin-top: -45px;
+		color: #C3C3C3;
+		position: absolute;
+	}
+}
+.section-status {
+	background-color: #565862;
+	color: #FFF;
+	overflow: initial;
+	a {
+		@include link(1, #FFF, #FFF, #FFF, 0, 0, 1);
+	}
+	.game-status {
+		display: table;
+		padding: 50px 25px;
+		transition: .5s ease-in-out;
+		transform: translateY(0px);
+		&:hover, &:active, &:focus {
+			transform: translateY(-5px);
+		}
+		img {
+			float: left;
+			height: 64px;
+			max-width: 64px;
+			margin-right: 14px;
+		}
+		.game-staus_text {
+			display: table-cell;
+			vertical-align: middle;
+			h1, h3, h3, h4, h5, h6 {
+				font-size: 1.5em;
+				line-height: 1em;
+				margin-bottom: 0;
+				color: inherit;
+			}
+			span {
+				font-size: 0.9em;
+			}
+		}
+		&.status_gwars {
+			img {
+			 	// -webkit-filter: drop-shadow(0px 0px 5px rgba(121, 13, 1,1));
+				// filter: url(shadow.svg#drop-shadow);
+				// -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#790D01')";
+				// filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#790D01')";
+			}
+		}
+	}
+}
+
+
+.section-featured-story {
+	padding-top: 30px;
+}
+
+.section-blog {
+	.col {
+		// Animtion effect
+		transform: scale(0);
+		overflow: auto;
+	}
+	.box.box-news {
+		margin: 15px auto;
+		@include media-query(palm) {
+			.box_content,.box_title {
+				height: auto;
+			}
+		}
+	}
+}

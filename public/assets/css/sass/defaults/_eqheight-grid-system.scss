@@ -1,0 +1,136 @@
+// Grid System 
+//==============================================================================
+// 2 Types Grid System created by Alan Longley & Donna Clinch 
+// Using col widths from _grid-system.scss
+
+/* 1st - gutter width columns with single border center of gutter
+ * the dividing lines are created between the padding and margin that is 
+ * half the gutter width which makes up the full gutter width
+ * - drawback this layout requires that there is half gutter left and right of col set
+ *   
+ *
+ *  <div class="row-eqh row-eqh-gutter">
+ *      <div class="col-eqh col-eqh-br">
+ *          <div class="col-inner">
+ *              // Column One
+ *          </div>
+ *      </div>
+ *      <div class="col-eqh col-eqh-br">
+ *          <div class="col-inner">
+ *              // Column Two 
+ *          </div>
+ *      </div>
+ *      <div class="col-eqh tablecell">
+ *          <div class="col-inner">
+ *              // Colum three 
+ *          </div>
+ *      </div>
+ *  </div>
+ */
+
+
+ /* 2nd - Gutters created by their own column
+ * this col set allows you to create columns that house the dividing lines so
+ * you can make the width of those colums as big as you like using the normal 
+ * floating gird system widths dividers are created with :after pseudo-element 
+ * - drawback this layout creates empty divs
+ *
+ * <div class="row-eqh row-eqh-div">
+ *     <div class="col-eqh col4-16">
+ *         <div class="col-inner">
+ *             // Column 1
+ *     </div>
+ *     <div class="col-eqh col-eqh-div col2-16"></div> 
+ *     <div class="col-eqh col4-16">
+ *         <div class="col-inner">
+ *             // Column 2
+ *     </div>
+ *     <div class="col-eqh  col-eqh-div col2-16"></div>
+ *     <div class="col-eqh col4-16">
+ *         <div class="col-inner">
+ *             // Column 3
+ *         </div>
+ *     </div>
+ * </div>
+ */
+
+
+
+// Create the containing row styles 
+//==============================================================================
+
+.row-eqh {
+    display: table;
+}
+
+
+// Creating the columns
+//==============================================================================
+
+.col-eqh {
+    display: table-cell;
+}
+
+
+// Create col-inner to create gutter
+.col-inner {
+    .row-eqh-gutter & {
+        margin-left: $gutterWidth /2 +px;
+        padding-right: $gutterWidth /2 +px;
+    }
+    .row-eqh-div & {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+
+
+
+// Create the dividers
+//==============================================================================
+
+.col-eqh-br {
+    border-right: $eqhBorder;
+}
+.col-eqh-bl {
+    border-left: $eqhBorder;
+}
+
+.col-eqh-div {
+    position: relative;
+    
+    &:after {
+        content: " ";
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        border-left: $eqhBorder;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+    }
+}
+
+
+
+// Responsive
+//==============================================================================
+
+@media (max-width: $fullWidth +px) {
+    // Set columns to full width
+    .row-eqh .col-eqh {
+        display: block;
+        width: 100%;
+    }
+    
+    // remove the two types of dividers
+    .col-eqh-br, .col-eqh-bl{
+        border: 0px; 
+    }
+
+    .col-eqh-div {
+        display: none; 
+    }
+    
+}

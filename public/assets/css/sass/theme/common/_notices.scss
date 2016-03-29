@@ -1,0 +1,71 @@
+// Common Notices
+//==============================================================================
+// Common notices that should appear on all sites ie. No Js Notice
+
+
+
+// No JavaScrip Notice
+//==============================================================================
+.js .no-jsmsg {
+    display: none;
+}
+
+.no-jsmsg, .chromeframe {
+    display: block;
+    position: fixed;
+    top: 0px;
+    background: $brandcolor02;
+    color: $white;
+    text-align: center; 
+    z-index: 5554;
+    width: 100%;
+
+    p {
+        color: $white;
+        padding: 1em 3em 0em;
+        @include link(1, $white, darken($brandcolor01,20%), $white, 1, 1, 0);
+    }
+}
+
+
+// Alerts
+//==============================================================================
+
+.alert {
+    display: block;
+    padding: 10px; 
+    @include vendor(border-radius, 5px);
+    background-repeat: no-repeat ;
+    background-position: 10px 10px; 
+
+    .alert__title {
+        padding-left: 49px;
+        font-size: 20px;
+    }
+}
+
+.alert-success {
+    background-image: url('../img/icons/icon__tick.png');
+    
+    .alert__title {color: $brandcolor01;} 
+}
+
+.alert-info {
+    background-image: url(../img/icon-info.png);
+    .alert__title {color: $info;} 
+}
+
+.alert-warning {
+    background-image: url(../img/icon-warning.png);
+    .alert__title {color: $warning;} 
+}
+
+.alert-error {
+    background-image: url(../img/icons/icon__cross.png);
+    .alert__title {color: $error;} 
+}
+
+.alert-error-list {
+    margin: 0 0 0 15px;
+    padding: 0;
+} 

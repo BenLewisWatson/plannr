@@ -1,0 +1,20 @@
+Really stupid way of detecting if number is odd but keeping it because it works
+   $odd: 1;
+   $odditr: 0;
+   @for $i from 1 through 40 {
+       &:nth-child(#{$i}) {
+           @if $odd==1 {
+               @if $i==1 {
+                   @include vendor(animation-delay, #{$i/2}s);
+               }
+               @else { $odditr: $odditr + 1; $oddnum: $i - $odditr;
+                   @include vendor(animation-delay, #{$oddnum/2}s);
+               }
+               $odd: 0;
+           }
+           @else { $num: ($i + 1) / 2;
+               @include vendor(animation-delay, #{$num/2}s);
+               $odd: 1;
+           }
+   	}    
+}

@@ -1,0 +1,45 @@
+// Typography
+//==============================================================================
+// Site foundation typography styles
+
+
+// Links
+//==============================================================================
+a {
+    @include link(1, $brandcolor01, darken($brandcolor01, 5%), darken($brandcolor01,10%), 0, 0, 1); 
+    cursor: pointer;
+    &:focus {
+        outline: none;
+        background: none; // Reset for ie 10
+    }
+}
+
+// Headers
+//==============================================================================
+// Heading sizes set in ../defaults/base/headings
+
+.alpha, .beta, .gamma, .delta, .epsilon, .zeta,
+h1, h2, h3, h4, h5, h6 { 
+    color: $textcolor; 
+    font-weight: 300;
+    line-height: $base-line-height +px;
+}
+
+
+// Paragraphs
+//==============================================================================
+
+p {
+    margin-bottom: $base-line-height +px;
+    line-height: $base-line-height +px;
+}
+
+// Text Helpers (more helpers in ../defaults/generic/helpers.scss)
+//==============================================================================
+
+// Color
+.brandcolor01 { color: $brandcolor01; }
+.brandcolor02 { color: $brandcolor02; }
+.brandcolor03 { color: $brandcolor03; }
+.brandcolor04 { color: $brandcolor04; }
+.brandcolor05 { color: $brandcolor05; }

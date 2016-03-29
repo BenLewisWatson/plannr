@@ -1,0 +1,196 @@
+// General layout Styles
+//==============================================================================
+// Styles that are site wide like wrappers etc.
+
+body {
+	background-color: $bodyBg;
+    color: $textcolor;
+    font-family: $brand-face;
+	font-weight: 400;
+	font-size: 100%;
+}
+
+::selection {
+	background-color: lighten($brandcolor01, 15%);
+	color: lighten($brandcolor01, 75%);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #D2D2D2;
+	margin: 5px 0 15px;
+}
+
+input, textarea {
+	// display: block;
+	// width: 100%;
+	padding: 10px;
+    background: #FDFDFD;
+    border: 1px solid #DADADA;
+	outline: none;
+	box-sizing: border-box;
+	margin-bottom: $gutterWidth/2+px;
+}
+
+.wrapper { 
+    max-width: $siteWidth +px;
+    margin: 0 auto;
+}
+
+.wrapper-absolute {
+	position: absolute;
+    width: $siteWidth+px;
+    max-width: 100%;
+    margin-left: -$siteWidth/2+px;
+    left: 50%;
+    top: 0px;
+    bottom: 0px;
+    @include mediaq-size($siteWidth) {
+    	position: initial;
+    	width: initial;
+		margin-left: initial;
+		left: 0px;
+		right: 0px;
+		.section-banner_content {
+			width: initial !important;
+		}
+    }
+}
+
+.wrapper-absolute-half {
+	position: absolute;
+    width: $siteWidth/2+px;
+    max-width: 100%;
+    margin-left: -$siteWidth/2+px;
+    left: 50%;
+    top: 0px;
+    bottom: 0px;
+    box-sizing: border-box;
+    @include mediaq-size($siteWidth) {
+    	position: initial;
+    	width: initial;
+		margin-left: initial;
+		left: 0px;
+		right: 0px;
+		.section-banner_content {
+			width: initial !important;
+		}
+    }
+}
+
+.va-center {
+	display: table;
+	height: 100%;
+	.va-inner {
+		display: table-cell;
+		vertical-align: middle;
+		width: 100%;
+	}
+}
+
+.page_banner {
+    z-index: -1;
+    position: relative;
+    border-bottom: 1px solid #DDD;
+    min-height: 260px;
+	img {
+	    position: fixed;
+	    display: none;
+	    left: 0;
+	    right: 0;
+	    margin: 0 auto;
+	    box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+	}
+}
+
+.well-light {
+	background-color: #FFF;
+}
+
+.boder {
+	border: 2px solid $grey;
+}
+
+.dashed-border {
+	border: 2px dashed $grey;
+}
+
+.labeled-divider {
+	position: relative;
+	text-align: left;
+	font-size: 14px;
+	font-weight: 700;
+	margin: 10px 0 15px;
+	overflow: hidden;
+	z-index: 1;
+	> span {
+		background-color: #FFF;
+		float: left;
+		display: inline-block;
+		padding-right: 10px;
+		z-index: 1;
+	}
+	&:after {
+		position: absolute;
+		display: block;
+		content: '';
+		background-color: #D2D2D2;
+		height: 1px;
+		top: 49%;
+		left: 0px;
+		right: 0px;
+		z-index: -1;
+	}
+}
+
+.btn {
+	display: inline-block;
+	border-radius: $brand-round+px;
+	background-color: #FFF;
+	color: $textcolor;
+	padding: 15px 30px;
+	margin: 10px 0;
+	text-align: center;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: box-shadow .75s ease;
+	&:hover, &:active, &:focus, &:visited {
+		color: $textcolor;
+		box-shadow: 0 3px 3px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.25);
+	}
+	&.btn-txt {
+		color: $brandcolor01;
+		text-transform: uppercase;
+		background-color: transparent;
+		box-shadow: none;
+		padding: 10px;
+		margin: 0;
+		transition: background-color .75s ease;
+		&:hover {
+			box-shadow: none;
+			background-color: $bodyBg;
+		}
+	}
+}
+
+.page-title {
+	display: table;
+	.page-title_heading {
+		display: table-cell;
+		@extend .kilo;
+	}
+}
+
+.pagination {
+	padding: 0;
+	margin: 0;
+	li {
+		display: inline-block;
+		background-color: $brandcolor03;
+		color: $white;
+		margin: 0 2px;
+		padding: 10px;
+		min-width: 20px;
+		text-align: center;
+	}
+}

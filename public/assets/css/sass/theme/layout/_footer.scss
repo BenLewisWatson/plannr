@@ -1,0 +1,96 @@
+// Layout Header
+//==============================================================================
+// Site wide footer styles
+
+.footer-contaiter {
+	background-color: $bodyBg;
+	overflow: auto;
+}
+
+footer#footer {
+	background-color: #2A2A2A;
+	font-size: 0.85em;
+	min-height: 100px;
+	padding: 60px 0 50px;
+	margin-top: 30px;
+	color: lighten($textcolor, 25%);
+	h1, h2, h3, h4, h5, h6, h6 {
+		color: #FFF;
+	}
+	> .wrapper {
+		box-sizing: border-box;
+		padding: 0 30px;
+	}
+	.footer_nav {
+		list-style: none;
+		margin: 0;
+		li {
+			&::before {
+				content: '\f105 ';
+				font-family: FontAwesome;
+				display: inline-block;
+				margin-right: 10px;
+			}
+			a {
+				display: inline-block;
+				@include link(1.1, lighten($textcolor, 25%), lighten($textcolor, 25%), lighten($textcolor, 25%), 0, 0, 1);
+				line-height: 1.5em;
+			}
+			ul {
+				list-style: none;
+				margin-left: 20px;
+				margin-bottom: 0px;
+			}
+		}
+	}
+	.footer_article {
+		margin-bottom: 15px;
+		a {
+			@include link(1, #FFF, #FFF, #FFF, 0, 0, 1);
+		}
+		.article_title {
+			color: #FFF;
+			margin-bottom: 5px;
+		}
+		.article_date {
+			display: block;
+			margin-top: 10px;
+		}
+	}
+	.footer_connect {
+		> div {
+			margin: 10px 0;
+		}
+		.fa {
+			color: #FFF;
+			margin-right: 15px;
+			font-size: 32px;
+		}
+	}
+}
+
+.stopper {
+	.wrapper {
+		padding: 0 30px;
+	}
+	font-size: 12px;
+	.copyright {
+		display: inline-block;
+		padding: 4px;
+		margin: 4px 0;
+	}
+	.stopper_links {
+	    padding: 4px 0;
+	    margin-bottom: 4px;
+	    display: inline-block;
+		a {
+			padding: 0 8px;
+			margin: 4px 0;
+			line-height: 14px;
+			border-right: 1px solid $textcolor;
+			&:last-child {
+				border-right: none;
+			}
+		}
+	}
+}

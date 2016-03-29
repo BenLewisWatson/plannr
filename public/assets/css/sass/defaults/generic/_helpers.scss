@@ -1,0 +1,136 @@
+// Helpers
+//==============================================================================
+// Small common style for quick content manipulation
+
+
+// Quick Floats
+//==============================================================================
+// .alignright, .alignleft wordpress defaults 
+.fl, .alignleft { float:left; display: inline; } 
+.fr, .alignright { float:right; display: inline; }
+
+.alignleft { margin: 0 $gutterWidth/2+px $gutterWidth/2 +px 0 }
+.alignright { margin: 0 0 $gutterWidth/2+px $gutterWidth/2+px }
+.aligncenter { display: block; margin:5px auto; }
+
+.leftauto { margin-left: auto; }
+.rightauto { margin-right: auto; }
+
+// Toggling Content
+//==============================================================================
+.hide, .js .nojs-show, .no-js .nojs-hide  { display: none; }
+.show, .nojs-show, .nojs-hide{ display: block; }
+
+.hidden { position:absolute; top:-99999px; left:0; }
+.invisible { visibility: hidden; }
+
+.opaque { opacity: 0; }
+
+.loading { display: none; }
+
+// Image replacement
+//==============================================================================
+.ir { text-indent: -5000px; display: block; }
+
+
+// Display Settings (block, inline, and inline block and inline block fall back)
+//==============================================================================
+.inline-block { display: inline-block; zoom: 1; *display: inline; }
+.block { display: block; }
+.inline { display: inline; }
+
+
+// Images
+//==============================================================================
+img.center { display: block; margin:0px auto; }
+
+// Position Elements
+//==============================================================================
+.rel { position:relative; }
+
+
+//remove style from list
+//==============================================================================
+.no-style { list-style: none; padding: 0; margin: 0; }
+
+
+// Margin Helpers
+//==============================================================================
+.m0  { margin           : 0; }
+.mt0 { margin-top       : 0; }
+.mr0 { margin-right     : 0; }
+.mb0 { margin-bottom    : 0; }
+.ml0 { margin-left      : 0; }
+
+.marg { margin          : $gutterWidth +px; }
+.mt { margin-top        : $gutterWidth +px; }
+.mr { margin-right      : $gutterWidth +px; }
+.mb { margin-bottom     : $gutterWidth +px; }
+.ml { margin-left       : $gutterWidth +px; }
+
+// Padding helpers
+//==============================================================================
+.pad { padding          : $gutterWidth +px; }
+.pt { padding-top        : $gutterWidth +px; }
+.pr { padding-right      : $gutterWidth +px; }
+.pb { padding-bottom     : $gutterWidth +px; }
+.pl { padding-left       : $gutterWidth +px; }
+
+.p0 { padding         : 0; }
+.pt0 { padding-top    : 0; }
+.pr0 { padding-right  : 0; }
+.pb0 { padding-bottom : 0; }
+.pl0 { padding-left   : 0; }
+
+// Typography 
+//==============================================================================
+
+// Text Transform
+.upper { text-transform: uppercase; }
+.lower { text-transform: lowercase; }
+
+// Style
+.bold, .strong, .em { font-weight: bold; font-style: none; }
+.italic { font-style: italic; }
+.underlined { text-decoration: underline; }
+
+// Size
+.small { font-size: 0.7em; font-weight: normal; }
+.big { font-size: 1.3em; font-weight: normal; }
+
+// Alignment 
+.tr { text-align: right; }
+.tc { text-align: center; }
+.tl { text-align: left; }
+.indent { margin-left: $gutterWidth +px; }
+
+// Forms
+.success {
+	background-color: $success;
+	color: lighten($success, 40%);
+	a {
+		@include link(1,lighten($success, 40%), $white, $white, 1, 0, 1);
+	}
+}
+
+// Colors
+.bgbrand01 { background-color: $brandcolor01; }
+.bgbrand02 { background-color: $brandcolor02; }
+.bgbrand03 { background-color: $brandcolor03; }
+.bgbrand04 { background-color: $brandcolor04; }
+.bgbrand05 { background-color: $brandcolor05; }
+
+// Overflow
+.overflow-hide { overflow: hidden; }
+
+// Widths
+.min-300 { min-width: 300px; }
+.max-500 { max-width: 500px; }
+
+@include media-query(palm) {
+	.min-300 { min-width: 100%; }
+}
+
+.mobile { display: none; }
+@include media-query(palm) { .mobile { display: block; } }
+@include media-query(palm) { .full { display: none; } }

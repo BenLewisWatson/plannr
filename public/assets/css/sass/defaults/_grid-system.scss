@@ -1,0 +1,109 @@
+// Grid System 
+//==============================================================================
+// Grid System created by James Thompson 
+// @ https://github.com/jameslouiz/responsive-grid
+
+
+// Create the containing row styles 
+//==============================================================================
+.row {
+    margin-left: 0 - $gutterWidth +px;
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table; 
+        content: "";
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+
+
+// Creating the columns
+//==============================================================================
+
+.col {
+    float: left;
+}
+
+// Generate the column widths based on variables set in _var.scss
+
+$i: 1;
+@while $i < ($columns + 1) {
+    .col#{$i}#{-$columns} {
+        $width: $i / $columns * 99.9%;
+        width: $width
+    }
+    $i: $i + 1;
+}
+
+// Create col-inner to create gutter
+.col-inner {
+    margin-left: $gutterWidth +px;
+    display: block;
+}
+
+
+
+
+// Generate offset widths to allow custom gutter widths
+//==============================================================================
+$i: 1;
+@while $i < ($columns + 1) {
+    .offset#{$i}#{-$columns} { 
+        padding-left: $i / $columns * 99.9%;
+    }
+    $i: $i + 1;
+}
+
+
+
+
+// Responsive
+//==============================================================================
+
+.show-tablet, .show-phone {
+    display: none;
+}
+
+.hide-tablet, .hide-phone {
+    display: block;
+}
+
+@mixin full-width {
+    float: none;
+    width: 100%;
+    clear: both;
+}
+
+// Reset columns to full width single column layout 
+
+@media (max-width: $fullWidth +px) {
+    .col {
+        @include full-width;
+        padding: 0;
+    }   
+}
+
+@media (max-width: $tablet +px) {
+    .show-table {
+        display: block;
+    }
+
+    .hide-table {
+        display: none;
+    }   
+}
+
+@media (max-width: $mobile +px) {
+    .show-phone {
+        display: block;
+    }
+
+    .hide-phone {
+        display: none;
+    }   
+}

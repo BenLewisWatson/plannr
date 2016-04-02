@@ -35,6 +35,7 @@ input, textarea {
 
 .wrapper { 
     max-width: $siteWidth +px;
+    padding: 0 $gutterWidth+px;
     margin: 0 auto;
 }
 
@@ -173,11 +174,51 @@ input, textarea {
 	}
 }
 
-.page-title {
-	display: table;
-	.page-title_heading {
-		display: table-cell;
-		@extend .kilo;
+.btn-add-client {
+	transition: color .5s ease-in-out;
+	span {
+		position: relative;
+		z-index: 1;
+	}
+	i {
+		position: relative;
+		background-color: $brandcolor01;
+		color: #FFF;
+		padding: 10px;
+		line-height: 10px;
+		font-size: 10px;
+		border-radius: 50%;
+		margin-right: 10px;
+		z-index: 1;
+		&:after {
+			display: block;
+			content: '';
+			position: absolute;
+			background-color: $brandcolor01;
+			z-index: -1;
+			border-radius: 50%;
+			
+			width: 30px;
+			height: 30px;
+
+			top: 50%;
+			left: 50%;
+			margin-top: -15px;
+			margin-left: -15px;
+
+			transition: opacity .5s ease-in-out;
+			opacity: 0;
+			transform: scale(0.9);
+		}
+	}
+	&:hover {
+		color: #FFF;
+		background-color: transparent;
+		i:after {
+			opacity: 1;
+			transform: scale(100);
+			transition: transform 1.5s ease-in-out, opacity .5s ease-in-out;
+		}
 	}
 }
 
@@ -186,11 +227,35 @@ input, textarea {
 	margin: 0;
 	li {
 		display: inline-block;
-		background-color: $brandcolor03;
+		background-color: $brandcolor01;
 		color: $white;
 		margin: 0 2px;
 		padding: 10px;
 		min-width: 20px;
 		text-align: center;
+		a {
+			@include link(1, lighten($brandcolor01 , 25%), lighten($brandcolor01 , 25%), lighten($brandcolor01 , 25%), 0, 0, 1);
+		}
+	}
+}
+
+.sidebar {
+	.menu {
+		.menu_title {
+			display: block;
+			font-size: 1.25em;
+			margin-bottom: 10px;
+		}
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li {
+				display: block;
+				line-height: 2em;
+				padding: 2px 0;
+				font-weight: 300;
+			}
+		}
 	}
 }

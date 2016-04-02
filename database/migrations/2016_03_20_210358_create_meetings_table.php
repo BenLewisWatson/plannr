@@ -12,7 +12,7 @@ class CreateMeetingsTable extends Migration
      */
     public function up()
     {
-        //
+        // 
     }
 
     /**

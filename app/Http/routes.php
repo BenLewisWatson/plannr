@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/jobs', 'JobController@showAllJobs');
-Route::get('/job/{job}', 'JobController@showJob');
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,7 +23,10 @@ Route::get('/job/{job}', 'JobController@showJob');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+	Route::get('/jobs', 'JobController@showAllJobs');
+	Route::get('/job/create', function() { return view('job.create'); });
+	Route::post('/job/create', 'JobController@createJob');
+	Route::get('/job/{job}', 'JobController@showJob');
 });
 
 // Authentication routes...

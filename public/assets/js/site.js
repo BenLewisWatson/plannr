@@ -146,11 +146,15 @@
                     }
                 }]
             });
-        } 
+        },
+        contactComboBox: function() {
+              $("select#title").selectBoxIt();
+        }
     }
     // Run
     $(function(){
-        Site.placeholdertext(); 
+        // Site.placeholdertext(); 
+        Site.contactComboBox(); 
         // Site.stickyHeader(); 
         // Site.mobileMenu(); 
         // Site.parallaxBanner(); 

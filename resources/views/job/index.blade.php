@@ -30,13 +30,16 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="row" data-animation="hierarchical-display">
 @foreach ($job as $j)
 	<div class="col col12-24">
 		<div class="col-inner">
 		    <div class="box box-hero box-job">
 		        <div class="box_thumbnail">
 	        	<img src="https://photos-0.carwow.co.uk/models/430x294/A3-SB-18_0.jpg" alt="Temp">
+	        	<div class="box_thumbnail_text">
+	        		Job {{ $j->id }}
+	        	</div>
 		        </div>
 	        	<div class="box_header cf">
 		        	<div class="fl">
@@ -70,4 +73,8 @@
 <div class="mt mb">
 	{!! $job->render() !!}
 </div>
+@endsection
+
+@section('scripts')
+<script src="/assets/js/lib/hierarchical-display/jquery.zmd.hierarchical-display.min.js" type="text/javascript"></script>
 @endsection

@@ -1,6 +1,5 @@
 @extends('index')
 @section('page_title', 'Add New Client')
-
 @section('content')
 	@if (count($errors) > 0)
 <div class="error pad mb">
@@ -13,8 +12,8 @@
 @endif
 <form action="/job/create" id="contact-form" method="POST">
 	{{ csrf_field() }}
-	<div class="well-light pad">
-		<div class="form-group">
+	<div class="form-group form-group_client-details show">
+		<div class="well-light pad mb">
 			<h1 class="form-group_title">Client Details</h1>
 			<div class="form-group_controls">
 				<div class="row mt">
@@ -49,14 +48,15 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="well-light">
-		<div class="form-group">
-			<h1 class="form-group_title pad">Client Address</h1>
-			<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-			<div id="map"></div>
-			<div class="form-group_controls pad">
+		<div class="fr">
+			<a href="javascript:void(0)" class="btn btn-form-group-next">Continue</a>
+		</div>
+	</div>
+	<div class="form-group form-group_client-address">
+		<div class="well-light pad mb">
+			<h1 class="form-group_title">Client Address</h1>
+			<div class="form-group_controls">
 				<div class="row mt">
 					<div class="col col12-24">
 						<div class="col-inner">
@@ -97,9 +97,13 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="fr">
+			<a href="javascript:void(0)" class="btn btn-form-group-next">Continue</a>
+		</div>
 	</div>
-	<div class="well-light pad">
-		<div class="form-group">
+	<div class="form-group form-group_client-contact">
+		<div class="well-light pad mb">
 			<h1 class="form-group_title">Client Contact Information</h1>
 			<div class="form-group_controls">
 				<div class="row mt">
@@ -125,7 +129,12 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="fr">
+			<a href="javascript:void(0)" class="btn btn-form-group-next">Continue</a>
+		</div>
+	</div>
+	<div class="form-group form-group_job-details">
+		<div class="well-light pad mb">
 			<h1 class="form-group_title">Job Details</h1>
 			<div class="form-group_controls">
 				<div class="row mt">
@@ -143,15 +152,13 @@
 			  					<option value="miss">Commercial</option>
 			  					<option value="mrs">Other</option>
 							</select>
-							<div></div>
-								<small class="fr">Or <a href="/job/create/" class="btn btn-small">Create New Job Type</a></small>
-							</div>
+							<small class="fr">Or <a href="/job/create/" class="btn btn-small">Create New Job Type</a></small>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
+	</div>
 	<div class="mb">
 		<button class="btn btn-txt" acition="submit">Add Client</button>
 	</div>
@@ -160,8 +167,5 @@
 
 @section('scripts')
 <script src="/assets/js/combobox.js" type="text/javascript"></script>
-<script src="/assets/js/contact/map.js" type="text/javascript"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANjWsTkK3fNrrdWI5CemHQEOpkChVVgUg&libraries=places&callback=initAutocomplete"
-		 async defer></script>
 <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
 @endsection

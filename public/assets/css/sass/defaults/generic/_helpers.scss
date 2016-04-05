@@ -113,6 +113,14 @@ img.center { display: block; margin:0px auto; }
 	}
 }
 
+.error {
+	background-color: $error;
+	color: lighten($error, 40%);
+	a {
+		@include link(1, lighten($success, 40%), $white, $white, 1, 0, 1);
+	}
+}
+
 // Colors
 .bgbrand01 { background-color: $brandcolor01; }
 .bgbrand02 { background-color: $brandcolor02; }

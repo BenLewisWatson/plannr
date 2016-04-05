@@ -25,6 +25,8 @@
 Route::group(['middleware' => ['web']], function () {
 	Route::get('/jobs', 'JobController@showAllJobs');
 	Route::get('/job/create', function() { return view('job.create'); });
+	Route::get('/job/create/modular', function() { return view('job.old-create'); });
+	Route::get('/job/create/map', function() { return view('job.map'); });
 	Route::post('/job/create', 'JobController@createJob');
 	Route::get('/job/{job}', 'JobController@showJob');
 });

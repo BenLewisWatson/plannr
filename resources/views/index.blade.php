@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="/assets/css/site.min.css">
 
-    <script type="text/javascript" async src="http://lgbtfc.dev/wp-content/themes/lgbtfc/assets/js/libs/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" async src="/assets/js/libs/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
 @include('layout.header')

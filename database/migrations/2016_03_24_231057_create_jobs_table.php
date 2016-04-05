@@ -20,21 +20,21 @@ class CreateJobsTable extends Migration
             $table->string('client_firstname');
             $table->string('client_surname');
             $table->string('address_1');
-            $table->string('address_2');
-            $table->string('town');
-            $table->string('city');
+            $table->strin,g('address_2');
+            $table->string('town')->nullable();
+            $table->string('city')->nullable();
             $table->string('postcode');
-            $table->string('pertner_id');
-            $table->text('description');
-            $table->string('type_id');
-            $table->string('quote');
-            $table->string('email');
-            $table->string('landline');
-            $table->string('mobile');
-            $table->string('gallery_id');
-            $table->double('location_x');
-            $table->double('location_y');
-            $table->double('location_z');
+            $table->string('pertner_id')->nullable();
+            $table->text('description')->nullable();
+            $table->string('type_id')->nullable();
+            $table->string('quote')->nullable();
+            $table->string('email')->nullable();
+            $table->string('landline')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('gallery_id')->nullable();
+            $table->double('location_x')->nullable();
+            $table->double('location_y')->nullable();
+            $table->double('location_z')->nullable();
         });
     }
 

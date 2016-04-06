@@ -22,9 +22,10 @@
 		<div class="col-inner">
 		    <div class="box box-hero box-job">
 		        <div class="box_thumbnail">
-	        	<img src="https://photos-0.carwow.co.uk/models/430x294/A3-SB-18_0.jpg" alt="Temp">
+		        <?php $j->getImage(); ?>
+	        	<!-- <img src="https://photos-0.carwow.co.uk/models/430x294/A3-SB-18_0.jpg" alt="Temp"> -->
 	        	<div class="box_thumbnail_text">
-	        		Job {{ $j->id }}
+	        		{{ $j->client_firstname.' '.$j->client_surname }}
 	        	</div>
 		        </div>
 	        	<div class="box_header cf">
@@ -55,9 +56,6 @@
 		</div>
 	</div>
 @endforeach
-</div>
-<div class="mt mb">
-	{!! $job->render() !!}
 </div>
 @endsection
 

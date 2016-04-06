@@ -52,7 +52,7 @@ class GetLocationImage extends Job implements ShouldQueue
             $query .= 'address='.urlencode(implode('+,', $this->location));
         }
         else {
-            $query .= 'latlng='.urlencode(implode('+,', $this->location)).'&sensor=true';
+            $query .= 'latlng='.urlencode(implode(',', $this->location)).'&sensor=true';
         }
         $query = $query.'&key='.$this->key;
     
@@ -62,6 +62,7 @@ class GetLocationImage extends Job implements ShouldQueue
 
         if(curl_getinfo($request, CURLINFO_HTTP_CODE) !== 200) {
             echo curl_error($request);
+            curl_close($request);
         }
         else {
             curl_close($request);
@@ -86,12 +87,14 @@ class GetLocationImage extends Job implements ShouldQueue
     }
 
     public function render($type = 'map') {
-        if ($type == 'map') {
-            $query = 'http://maps.googleapis.com/maps/api/staticmap?center='.$this->getLatLng().'&zoom=15&size=600x600&maptype=roadmap';
-            echo '<img src="'.$query.'">';
-        }
-        else if ($type == 'street') {
+        if ($this->data->status != "ZERO_RESULTS") {
+            if ($type == 'map') {
+                $query = 'http://maps.googleapis.com/maps/api/staticmap?center='.$this->getLatLng().'&zoom=15&size=430x294&maptype=roadmap';
+                echo '<img src="'.$query.'">';
+            }
+            else if ($type == 'street') {
 
+            }
         }
     }
 

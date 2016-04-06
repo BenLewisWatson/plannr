@@ -161,7 +161,7 @@
 @section('scripts')
 <script src="/assets/js/combobox.js" type="text/javascript"></script>
 <script src="/assets/js/contact/map.js" type="text/javascript"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANjWsTkK3fNrrdWI5CemHQEOpkChVVgUg&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANjWsTkK3fNrrdWI5CemHQEOpkChVVgUg&libraries=places&region=GB&callback=initAutocomplete"
 		 async defer></script>
 <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
 @endsection

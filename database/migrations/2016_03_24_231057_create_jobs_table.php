@@ -20,7 +20,7 @@ class CreateJobsTable extends Migration
             $table->string('client_firstname');
             $table->string('client_surname');
             $table->string('address_1');
-            $table->strin,g('address_2');
+            $table->string('address_2');
             $table->string('town')->nullable();
             $table->string('city')->nullable();
             $table->string('postcode');

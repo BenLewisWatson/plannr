@@ -18,7 +18,7 @@ class JobController extends Controller
 
     function showAllJobs() {
         $job = new GetLocationImage(array("52", "Royston Hill", "East Ardsley", "Wakefield"));
-        return $job->getData();
+        return view('job.map', ["job" => $job]);
     	// return view('job.index', ["job" => Job::paginate(20)]);
     }
 

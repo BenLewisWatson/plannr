@@ -117,6 +117,25 @@
 				}
 			});
 		},
+
+		tabs: function() { 
+			$('.tabs .tab_select-btn').click(function(e) {
+				e.preventDefault();
+				var tabBtn = $(this);
+				var tab = $('.tab[data-tab-id="'+$(this).data('tab-id')+'"]');
+				if(!tab.is(':visible')) {
+					if (!tab.is(':animated')) {
+						$('.tab').not(tab).fadeOut(750);
+						tab.slideDown(750);
+						$('.tab.tab-active').not(tab).removeClass('tab-active');
+						$('.tab_select-btn.tab_select-btn-active').not(tabBtn).removeClass('tab_select-btn-active');
+						tab.addClass('tab-active');
+						tabBtn.addClass('tab_select-btn-active');
+					}
+				}
+			})
+		},
+
 		parallaxBanner: function() {
 			$(window).on("load", function() {
 				var height = $(".page_banner img").height();
@@ -149,7 +168,42 @@
 			});
 		},
 		contactComboBox: function() {
-			  $("select").selectBoxIt();
+			$("select").selectBoxIt();
+		},
+		contactAddressInputSelect: function() {
+			// $('#google-map-form').submit(function(e) {
+			// 	$('#address_1').val();
+			// 	$('#address_2').val();
+			// 	$('#address_3').val();
+			// 	$('#address_town').val();
+			// 	$('#address_city').val();
+			// 	$('#address_postcode').val();
+			// 	return false;
+			// });
+
+			$('.btn-address-select').click(function(e) {
+				if (!$(this).hasClass('btn-disabled')) {
+					e.preventDefault();
+					if ($(this).hasClass('btn-address-select-map') && !$('#map').is(':visible')) {
+						if(navigator.geolocation) {
+							console.log("Finding Location.");
+							browserSupportFlag = true;
+							navigator.geolocation.getCurrentPosition(function(position) {
+							  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+							  map.setCenter(initialLocation);
+							});
+						}
+					}
+
+					// Remove disabled button class then add class to button clicked.
+					// $('.form-group_address .btn-disabled').removeClass('.btn-disabled');
+					// $(this).addClass('btn-disabled');
+					// Hide all form-groups then show one selected
+					$('.form-group_address .form-group_controls').slideUp();
+					$('.form-group_address .form-group_controls#'+$(this).data("reveal")).slideDown();					
+					google.maps.event.trigger(map,'resize');
+				}
+			});
 		},
 		contactBoxExpand: function() {
 			$('.form-group_title').click(function() {
@@ -166,6 +220,11 @@
 				$(nextForm).slideDown();
 			});
 		},
+		addNewClient: function() {
+			$('.btn-add-client').click(function() {
+				$('.clients').find('.client').fadeIn();
+			});
+		},
 		contactValidator: function() {
 			$('#contact-form').validate({
 				rules: {
@@ -175,20 +234,34 @@
 					},
 					surname: {
 						required: true,
-						// email:true
 					},
 					title: {
 						required: true,
-						// phoneUK: true,
-						// minlength: 10
-					},
-					partner: {
-						required: true
 					},
 					address_1: {
 						required: true,
-						// minlength: 20
-					}            
+					},
+					address_2: {
+						required: true,
+					},
+					address_city: {
+						required: true,
+					},
+					landline: {
+						digits: true,
+						minlength: 10
+					},
+					mobile: {
+						digits: true,
+						minlength: 10
+					},
+					email: {
+						email: true,
+					},
+					quote: {
+						required: true,
+						number: true,
+					},
 				},
 				messages: {
 					enquiry_tel: {
@@ -201,12 +274,15 @@
 	// Run
 	$(function(){
 		// Site.placeholdertext(); 
-		Site.contactComboBox(); 
+		// Site.contactComboBox(); 
+		Site.contactAddressInputSelect(); 
 		// Site.contactBoxExpand(); 
-		Site.contactValidator(); 
+		// Site.contactValidator(); 
+		Site.tabs(); 
 		// Site.stickyHeader(); 
 		// Site.mobileMenu(); 
 		// Site.parallaxBanner(); 
 		// Site.homePageNewsSlider();
+		// Site.addNewClient();
 	});
 }(jQuery));

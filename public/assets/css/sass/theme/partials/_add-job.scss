@@ -1,0 +1,13 @@
+.form-group_controls {
+	.clients {
+		.client {
+			display: none;
+			input, textarea {
+				margin: 0;
+			}
+			&:first-child {
+				display: block;
+			}
+		}
+	}
+}

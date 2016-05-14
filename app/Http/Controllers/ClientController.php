@@ -3,41 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Jobs\GetLocationImage;
-use Validator;
+Use Validator;
 
 use App\Http\Requests;
 
-use App\Job;
+use App\Client;
 
-class JobController extends Controller
+class ClientController extends Controller
 {
-    function showJob($job) {
-    	return view('job.single', ["job" => Job::find($job)]);
+    function showClient($client) {
+        return view('client.single', ["client" => Client::findOrFail($client)]);
     }
 
-    function showAllJobs() {
-        return view('job.index', ["job" => Job::paginate(20)]);
+    function showAllClients() {
+        return view('client.index', ["client" => Client::paginate(20)]);
     }
 
-    function createJob(Request $request) {
+    function createClient(Request $request) {
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
+            'title' => 'required|min:2|max:10',
             'surname' => 'required',
-            'title' => 'required',
+            'mobile' => 'integer',
+            'email' => 'email|unique:clients',
+            'address_1' => 'required',
+            'address_2' => 'required',
+            'city' => 'required',
+            'postcode' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect('job/create')
+            return redirect('client/create')
                 ->withErrors($validator)
                 ->withInput();
         }
 
         try {
-    	   Job::firstOrCreate(array(
-                'client_title' => $request->input('title'),
-                'job_type' => $request->input('job_type'),
-                'primary_role' => $request->input('primary_role'),
+    	   Client::firstOrCreate(array(
+                'title' => $request->input('title'),
+                'firstname' => $request->input('firstname'),
+                'surname' => $request->input('surname'),
                 'address_1' => $request->input('address_1'),
                 'address_2' => $request->input('address_2'),
                 'address_3' => $request->input('address_3'),
@@ -46,9 +50,6 @@ class JobController extends Controller
                 'county' => $request->input('county'),
                 'postcode' => $request->input('postcode'),
                 'country' => $request->input('country'),
-                'description' => $request->input('description'),
-                'type_id' => $request->input('type_id'),
-                'quote' => $request->input('quote'),
                 'email' => $request->input('email'),
                 'landline' => $request->input('landline'),
                 'mobile' => $request->input('mobile'),
@@ -56,10 +57,10 @@ class JobController extends Controller
                 'lng' => $request->input('lng'),
                 'zoom' => $request->input('zoom')
             ));
-           return view('job.success');
+           return view('client.success');
         }
         catch (Exception $e) { 
-            return view('job.create', ["e" => $e]);
+            return view('client.create', ["e" => $e]);
         }
     }
 }

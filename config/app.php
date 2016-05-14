@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Caffeinated\Menus\MenusServiceProvider::class,
+        Lodge\Postcode\PostcodeServiceProvider::class,
     ],
 
     /*
@@ -203,6 +204,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Menu' => Caffeinated\Menus\Facades\Menu::class,
+        'Postcode' => Lodge\Postcode\Facades\Postcode::class,
     ],
 
 ];

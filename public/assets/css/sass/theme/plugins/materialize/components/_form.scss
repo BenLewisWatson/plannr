@@ -916,3 +916,10 @@ select {
    border-radius: 2px;
    height: 3rem;
 }
+
+label.error {
+    position: absolute;
+    background: transparent;
+    color: #E74c3c;
+    margin-top: -30px;
+}

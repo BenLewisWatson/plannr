@@ -23,12 +23,24 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/jobs', 'JobController@showAllJobs');
 	Route::get('/job/create', function() { return view('job.create'); });
-	Route::get('/job/create/modular', function() { return view('job.old-create'); });
-	Route::get('/job/create/map', function() { return view('job.map'); });
 	Route::post('/job/create', 'JobController@createJob');
 	Route::get('/job/{job}', 'JobController@showJob');
+	Route::get('/jobs', 'JobController@showAllJobs');
+
+	Route::get('/postcode/{postcode?}', function($postcode) {
+		return (Postcode::lookup($postcode));
+	});
+
+	// Route::get('/job/create/modular', function() { return view('job.old-create'); });
+	// Route::get('/job/create/map', function() { return view('job.map'); });
+	
+	Route::get('/client', 'ClientController@showAllClients');
+
+	Route::get('/client/create', function() { return view('client.create'); });
+	Route::post('/client/create', 'ClientController@createClient');
+	
+	Route::get('/client/{client?}', 'ClientController@showClient');
 });
 
 // Authentication routes...

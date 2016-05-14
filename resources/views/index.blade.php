@@ -12,7 +12,7 @@
 </head>
 <body>
 @include('layout.header')
-<div class="wrapper"> 
+<div class="wrapper mb"> 
     <div class="row">
         <div class="col col5-24">
             <div class="col-inner">

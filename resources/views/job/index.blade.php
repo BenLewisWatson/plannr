@@ -7,6 +7,13 @@
 
 @section('sidebar_right')
 	<div class="rel">
+		<div class="box m0 mb">
+			<a href="/" class="btn-add-client">
+				<i class="fa fa-plus"></i> <span>Create Job</span>
+			</a>
+		</div>
+	</div>
+	<div class="rel">
 		<div class="box m0">
 			<a href="/" class="btn-add-client">
 				<i class="fa fa-plus"></i> <span>Add Client</span>

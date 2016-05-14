@@ -38,6 +38,7 @@ header {
 .page-title {
 	.page-title_heading {
 		@extend .kilo;
+		font-weight: 300;
 		margin-bottom: 0;
 	}
 }

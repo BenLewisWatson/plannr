@@ -31,10 +31,10 @@ input, textarea {
     height: 3rem;
     width: 100%;
     font-size: 1rem;
-    margin: 0 0 17px 0;
-    padding: 0;
+    margin: 0 0 30px 0;
+    padding: 0 10px;
     box-shadow: none;
-    box-sizing: content-box;
+    box-sizing: border-box;
     transition: all .3s;
 	&:hover {
 	}
@@ -54,6 +54,14 @@ input, textarea {
 	&.success {
 
 	}
+}
+
+
+label.error {
+    position: absolute;
+    background: transparent;
+    color: #E74c3c;
+    margin-top: -30px;
 }
 
 select {
@@ -119,3 +127,4 @@ select {
 :-ms-input-placeholder {
    color: #CCCCCC;
 }
+

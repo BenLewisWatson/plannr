@@ -36,11 +36,13 @@ Route::group(['middleware' => ['web']], function () {
 	// Route::get('/job/create/map', function() { return view('job.map'); });
 	
 	Route::get('/client', 'ClientController@showAllClients');
-
+	
 	Route::get('/client/create', function() { return view('client.create'); });
 	Route::post('/client/create', 'ClientController@createClient');
 	
 	Route::get('/client/{client?}', 'ClientController@showClient');
+	
+	Route::get('/search/client/{query?}', 'ClientController@filterClients');
 });
 
 // Authentication routes...

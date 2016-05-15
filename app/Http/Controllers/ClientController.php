@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-Use Validator;
-
-use App\Http\Requests;
-
 use App\Client;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class ClientController extends Controller
 {
@@ -17,6 +16,10 @@ class ClientController extends Controller
 
     function showAllClients() {
         return view('client.index', ["client" => Client::paginate(20)]);
+    }
+
+    function filterClients($query) {
+        return view('client.index', ["client" => (Client::search($query)->get()) ]);
     }
 
     function createClient(Request $request) {

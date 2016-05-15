@@ -23,7 +23,7 @@
 							<div class="col col12-24">
 								<div class="col-inner">
 									<label for="client_1">Search Client</label>
-									<input type="text" name="client_1" id="client_1" placeholder="Type name of the client`" value="{{ old('client_1') }}">
+									<input type="text" name="client_1" id="client_1" placeholder="Type name of the client" value="{{ old('client_1') }}">
 								</div>
 							</div>
 							<div class="col col12-24">
@@ -104,23 +104,10 @@
 		</div>
 	</div>
 
-	<div class="well-light">
+	<div class="well-light pad mb">
 		<div class="form-group form-group_address">
-			<h1 class="form-group_title pad">Job Address</h1>
-			<div class="address-finder tc pad  pt0 overflow-auto">
-				<div class="fl">
-					<a href="javascript:void(0)" class="btn btn-address-select btn-address-select-map m0 ml" data-reveal="map-container">Find Address</a>	
-				</div>
-				or
-				<div class="fr">
-					<a href="javascript:void(0)" class="btn btn-address-select m0 mr" data-reveal="manual-controls-container">Enter It Manually</a>
-				</div>
-			</div>
-			<div class="form-group_controls hide" id="map-container">
-				<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-				<div id="map"></div>
-			</div>
-			<div class="form-group_controls pad hide" id="manual-controls-container">
+			<h1 class="form-group_title">Job Address</h1>
+			<div class="form-group_controls" id="manual-controls-container">
 				<div class="row mt">
 					<div class="col col12-24">
 						<div class="col-inner">

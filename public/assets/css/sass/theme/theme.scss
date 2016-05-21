@@ -12,8 +12,9 @@
 
     @import "plugins/slick";
     @import "plugins/animate";
+    @import "plugins/dropzone";
     @import "plugins/combobox";
-    // @import "plugins/materialize/materialize";
+    @import "plugins/sweetalert";
     @import "plugins/hierarchical-display";
 
 // Layout Styles
@@ -31,6 +32,7 @@
     @import "partials/resources";
     @import "partials/single";
     @import "partials/mobile-menu";
+    @import "partials/searchable";
     @import "partials/add-job";
     @import "partials/responsive";
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientJobsTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateClientJobsTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_jobs', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->integer('client_id');
-            $table->integer('job_id');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateClientJobsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('client_jobs');
+        Schema::drop('roles');
     }
 }

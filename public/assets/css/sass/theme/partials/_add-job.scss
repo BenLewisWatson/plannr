@@ -2,12 +2,73 @@
 	.clients {
 		.client {
 			display: none;
-			input, textarea {
-				margin: 0;
-			}
+			transition: background-color 1s ease;
+			background-color: rgba(251, 251, 251, 0);
 			&:first-child {
+				background-color: rgba(251, 251, 251, 1);
+			}
+			&#client_1 {
 				display: block;
 			}
 		}
+		.client-ghost {
+			opacity: 0.5;
+			border: 1px dotted $brandcolor02;
+		}
 	}
+}
+
+.client-search {
+	position: relative;
+	.client-search_results {
+		display: none;
+		position: absolute;
+		cursor: pointer;
+		background-color: #FFF;
+		top: 100%;
+		left: 0;
+		right: 0;
+		margin-top: -30px;
+		border: 1px solid $grey;
+		z-index: 1;
+		ul {
+			padding: 0;
+			margin: 0;
+			li {
+				padding: 10px;
+				list-style: none;
+				border-bottom: 1px solid $grey;
+				transition: background-color .25s ease, color .25s ease, border-bottom .25s ease;
+				&:hover {
+					background-color: $brandcolor02;
+					color: #FFF;
+					border-bottom: 1px solid $brandcolor02;
+				}
+			}
+		}
+	}
+}
+
+.btn.btn-find-postcode {
+	display: none;
+}
+
+.form-group_address.form-group_address_postcode-only {
+	.col {
+		display: none;
+		&.col-postcode {
+			display: block;
+		}
+	}
+	.btn.btn-find-postcode {
+		display: block;
+	}
+}
+
+.client-search_input ~ .client-search_results {
+	display: none;
+}
+
+#useClientAddress, #addressForm {
+	display: none;
 }

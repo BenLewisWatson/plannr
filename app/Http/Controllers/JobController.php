@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Jobs\GetLocationImage;
-use Validator;
-
+use App\Client;
 use App\Http\Requests;
-
 use App\Job;
+use App\JobClient;
+use App\Jobs\GetLocationImage;
+use Illuminate\Http\Request;
+use Validator;
 
 class JobController extends Controller
 {
@@ -20,11 +20,11 @@ class JobController extends Controller
         return view('job.index', ["job" => Job::paginate(20)]);
     }
 
-    function createJob(Request $request) {
+    function createJob(Request $request) {        
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'surname' => 'required',
-            'title' => 'required',
+            // 'first_name' => 'required',
+            // 'surname' => 'required',
+            // 'title' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -34,10 +34,8 @@ class JobController extends Controller
         }
 
         try {
-    	   Job::firstOrCreate(array(
-                'client_title' => $request->input('title'),
-                'job_type' => $request->input('job_type'),
-                'primary_role' => $request->input('primary_role'),
+    	   $job = Job::firstOrCreate(array(
+                'primary_role' => $request->input('client')[0],
                 'address_1' => $request->input('address_1'),
                 'address_2' => $request->input('address_2'),
                 'address_3' => $request->input('address_3'),
@@ -47,15 +45,23 @@ class JobController extends Controller
                 'postcode' => $request->input('postcode'),
                 'country' => $request->input('country'),
                 'description' => $request->input('description'),
-                'type_id' => $request->input('type_id'),
                 'quote' => $request->input('quote'),
                 'email' => $request->input('email'),
                 'landline' => $request->input('landline'),
                 'mobile' => $request->input('mobile'),
                 'lat' => $request->input('lat'),
                 'lng' => $request->input('lng'),
-                'zoom' => $request->input('zoom')
+                'zoom' => $request->input('zoom'),
+                'job_type' => $request->input('job_type')
             ));
+
+            foreach ($request->input('client') as $client) {
+                JobClient::firstOrCreate([
+                    'job_id' => $job->id,
+                    'client_id' => $client
+                ]);
+            }
+
            return view('job.success');
         }
         catch (Exception $e) { 

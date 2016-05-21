@@ -42,6 +42,16 @@
 				}
 			});
 		},
+		initAnimateCSS: function() {
+			$.fn.extend({
+			    animateCss: function (animationName, callback) {
+			        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+			        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+			            callback();
+			        });
+			    }
+			});
+		},
 		stickyHeader: function() {
 			$("#header").sticky({topSpacing:0});
 		},
@@ -167,38 +177,22 @@
 				}]
 			});
 		},
-		contactComboBox: function() {
+		initSelectboxIt: function() {
 			$("select").selectBoxIt();
 		},
 		contactAddressInputSelect: function() {
-			// $('#google-map-form').submit(function(e) {
-			// 	$('#address_1').val();
-			// 	$('#address_2').val();
-			// 	$('#address_3').val();
-			// 	$('#address_town').val();
-			// 	$('#address_city').val();
-			// 	$('#address_postcode').val();
-			// 	return false;
-			// });
-
 			$('.btn-address-select').click(function(e) {
 				if (!$(this).hasClass('btn-disabled')) {
 					e.preventDefault();
 					if ($(this).hasClass('btn-address-select-map') && !$('#map').is(':visible')) {
 						if(navigator.geolocation) {
 							console.log("Finding Location.");
-							browserSupportFlag = true;
 							navigator.geolocation.getCurrentPosition(function(position) {
 							  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 							  map.setCenter(initialLocation);
 							});
 						}
 					}
-
-					// Remove disabled button class then add class to button clicked.
-					// $('.form-group_address .btn-disabled').removeClass('.btn-disabled');
-					// $(this).addClass('btn-disabled');
-					// Hide all form-groups then show one selected
 					$('.form-group_address .form-group_controls').slideUp();
 					$('.form-group_address .form-group_controls#'+$(this).data("reveal")).slideDown();					
 					google.maps.event.trigger(map,'resize');
@@ -225,61 +219,27 @@
 				$('.clients').find('.client').fadeIn();
 			});
 		},
-		contactValidator: function() {
-			$('#contact-form').validate({
-				rules: {
-					first_name: {
-						required: true,
-						maxlength: 50
-					},
-					surname: {
-						required: true,
-					},
-					title: {
-						required: true,
-					},
-					address_1: {
-						required: true,
-					},
-					address_2: {
-						required: true,
-					},
-					address_city: {
-						required: true,
-					},
-					landline: {
-						digits: true,
-						minlength: 10
-					},
-					mobile: {
-						digits: true,
-						minlength: 10
-					},
-					email: {
-						email: true,
-					},
-					quote: {
-						required: true,
-						number: true,
-					},
-				},
-				messages: {
-					enquiry_tel: {
-						phoneUK: ' is not a valid number'
-					} 
-				}
-			});
+		validatorPostcodeMethod: function() {
+			// UK Postcode
+			jQuery.validator.addMethod("postcode", function(value, element) {
+			  	return this.optional(element) ||  /^([a-zA-Z]){1}([0-9][0-9]|[0-9]|[a-zA-Z][0-9][a-zA-Z]|[a-zA-Z][0-9][0-9]|[a-zA-Z][0-9]){1}([ ])([0-9][a-zA-z][a-zA-z]){1}$/.test(value);
+			}, "Please enter a valid uk postcode");
+
+			// UK Phone Number
+			// jQuery.validator.addMethod("postcode", function(value, element) {
+			// 	// var regex = [A-PR-UWYZa-pr-uwyz0-9][A-HK-Ya-hk-y0-9][AEHMNPRTVXYaehmnprtvxy0-9]?[ABEHMNPRVWXYabehmnprvwxy0-9]?{1,2}[0-9][ABD-HJLN-UW-Zabd-hjln-uw-z]{2}|(GIRgir){3} 0(Aa){2})$/g;
+			//   	return this.optional(element) ||  /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/.test(value);
+			// }, "Please enter a valid phone number");
 		}
 	}
 	// Run
 	$(function(){
 		// Site.placeholdertext(); 
 		// Site.contactComboBox(); 
-		Site.contactAddressInputSelect(); 
 		// Site.contactBoxExpand(); 
-		// Site.contactValidator(); 
-		Site.tabs(); 
-		// Site.stickyHeader(); 
+		Site.tabs();
+		Site.initAnimateCSS();
+		// Site.initSelectboxIt(); 
 		// Site.mobileMenu(); 
 		// Site.parallaxBanner(); 
 		// Site.homePageNewsSlider();

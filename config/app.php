@@ -158,6 +158,7 @@ return [
 
         Caffeinated\Menus\MenusServiceProvider::class,
         Lodge\Postcode\PostcodeServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -205,6 +206,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Menu' => Caffeinated\Menus\Facades\Menu::class,
         'Postcode' => Lodge\Postcode\Facades\Postcode::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

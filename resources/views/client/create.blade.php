@@ -5,7 +5,7 @@
 	@if (count($errors) > 0)
 <div class="error pad mb">
 	<h2>There were errors with the details you submitted.</h2>
-    <ul class="m0">
+    <ul>
         @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
         @endforeach
@@ -48,10 +48,10 @@
 		</div>
 	</div>
 
-	<div class="well-light">
+	<div class="well-light pad mb">
 		<div class="form-group form-group_address">
-			<h1 class="form-group_title pad">Client Address</h1>
-			<div class="form-group_controls pad" id="manual-controls-container">
+			<h1 class="form-group_title">Client Address</h1>
+			<div class="form-group_controls" id="manual-controls-container">
 				<div class="row mt">
 					<div class="col col12-24">
 						<div class="col-inner">
@@ -88,6 +88,10 @@
 							<label for="postcode">Post Code</label>
 							<input type="text" name="postcode" id="postcode" placeholder="Post Code" value="{{ old('postcode') }}">
 						</div>
+					</div>
+					<div class="fr">
+						<a href="javascript:void(0)" class="btn btn-txt">Enter Address Manually</a>
+						<a href="javascript:void(0)" class="btn btn-sm btn-toggle btn-addressForm-postcode" data-show-id="addressForm">Find Using Postcode</a>
 					</div>
 				</div>
 			</div>
@@ -128,9 +132,22 @@
 @endsection
 
 @section('scripts')
-<script src="/assets/js/combobox.js" type="text/javascript"></script>
-<script src="/assets/js/contact/map.js" type="text/javascript"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANjWsTkK3fNrrdWI5CemHQEOpkChVVgUg&libraries=places&region=GB&callback=initAutocomplete"
+{{-- <script src="/assets/js/combobox.js" type="text/javascript"></script> --}}
+{{-- <script src="/assets/js/contact/map.js" type="text/javascript"></script> --}}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANjWsTkK3fNrrdWI5CemHQEOpkChVVgUg&libraries=places&region=GB"
 		 async defer></script>
 <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+	// Site.validatorPostcodeMethod(); 
+	Site.contactAddressInputSelect(); 
+	
+	var address = 'wf32hj';
+	geocoder.geocode({ 'address': address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+		    alert(results[0].formatted_address);
+		}
+	});
+});
+</script>
 @endsection

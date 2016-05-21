@@ -11,7 +11,7 @@ class Job extends Model
 	protected $fillable = array('client_title' ,'client_firstname' ,'client_surname' ,'address_1' ,'address_2' ,'town' ,'city' ,'postcode' ,'quote' ,'email' ,'landline' ,'mobile', 'location_x', 'location_y');
 
 	public function users() {
-        return $this->hasMany('App\JobUsers');
+        return $this->hasMany('App\JobClient');
 	}
 
 	public function getImage() {

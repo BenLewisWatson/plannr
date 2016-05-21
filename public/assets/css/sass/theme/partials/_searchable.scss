@@ -1,0 +1,32 @@
+$brandcolor: #06f;
+
+.searchable {
+	position: relative;
+	.searchable_results {
+		margin: 0;
+		list-style: none;
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		background-color: #FDFDFD;
+		z-index: 1;
+		.searchable_results_item {
+			background-color: #FDFDFD;
+			color: #717171;
+			display: block;
+			border: 1px solid #DDD;
+			border-top: none;
+			padding: 10px;
+			cursor: pointer;
+			transition: background-color .125s ease;
+			&:hover {
+				background-color: $brandcolor;
+				color: #FFF;
+			}
+			&.searchable_results_item-selected {
+				background-color: $brandcolor;
+				color: #FFF;
+			}
+		}
+	}
+}

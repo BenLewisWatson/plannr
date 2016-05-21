@@ -7,7 +7,7 @@ body {
 	background-color: $bodyBg;
     color: $textcolor;
     font-family: $brand-face;
-	font-weight: 400;
+	font-weight: 300;
 	font-size: 100%;
 }
 
@@ -115,12 +115,19 @@ input, textarea {
 	background-color: #FFF;
 }
 
-.well-client {
-    border-left: 1px solid #E8E8E8;
-    border-right: 1px solid #E8E8E8;
-    padding: 15px;
-    margin-bottom: 30px;
-    border-radius: 5px;
+.clients {
+	.client.well-client {
+		cursor: move;
+		cursor: -webkit-grab;
+	    border-left: 1px solid #E8E8E8;
+	    border-right: 1px solid #E8E8E8;
+	    padding: 15px;
+	    margin-bottom: 30px;
+	    border-radius: 5px;
+		.client_controls {
+			margin-top: 10px;
+		}
+	}
 }
 
 .boder {
@@ -164,8 +171,9 @@ a.btn, .btn, .btn:focus, .btn:visited {
 	border-radius: $brand-round+px;
 	background-color: $brandcolor01;
 	color: lighten($brandcolor01, 50%);
-	padding: 5px;
-	margin: 10px 0;
+	font-weight: 500;
+	padding: 5px 7px;
+	margin: 10px;
 	border: none;
 	outline: none;
 	text-align: center;
@@ -190,6 +198,9 @@ a.btn, .btn, .btn:focus, .btn:visited {
 			box-shadow: none;
 			background-color: $bodyBg;
 		}
+	}
+	&.btn-sm {
+		@include font-size(14);
 	}
 }
 

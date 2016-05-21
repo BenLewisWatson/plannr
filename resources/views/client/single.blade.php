@@ -1,7 +1,7 @@
-@section('page_title', 'Viewing '.$client->firstname.' '.$client->surname.'\'s Profile')
-
+@section('page_title', $client->firstname.' '.$client->surname.'\'s Profile')
 
 @extends('index')
+
 @section('content')
 <div class="tabs well-light">
 	<div class="tab_header cf">

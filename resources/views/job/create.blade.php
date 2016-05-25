@@ -25,11 +25,7 @@
 							<div class="col col12-24">
 								<div class="col-inner">
 									<label for="client_1_name">Search Client</label>
-									<div class="client-search">
-										<input type="text" name="client-search_input" class="client-search_input" placeholder="Type name of the client" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-										<div class="client-search_results"><ul></ul></div>
-									</div>
-									<input type="text" hidden name="client[]" id="client_1_name" class="client-id-field">
+									<input type="text" name="client[]" id="client_1_name" class="client-id-field" placeholder="Search for a client">
 								</div>
 							</div>
 							<div class="col col10-24">
@@ -173,7 +169,7 @@
 					<div class="col col12-24">
 						<div class="col-inner">
 							<label for="quote">Quote</label>
-							<input type="text" name="quote" id="quote" placeholder="Quote">
+							<input type="text" name="quote" id="quote" placeholder="£1000">
 						</div>
 					</div>
 					<div class="col col12-24">
@@ -204,200 +200,8 @@
 {{-- <script src="/assets/js/contact/map.js" type="text/javascript"></script> --}}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANjWsTkK3fNrrdWI5CemHQEOpkChVVgUg&region=GB?sensor=false"
 		 async defer></script>
-<script src="/assets/js/plugins/unibox.min.js" type="text/javascript"></script>
 <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
 <script src="/assets/js/plugins/sortable.js" type="text/javascript"></script>
-<script src="/assets/js/plugins/quicksearch.js" type="text/javascript"></script>
-<script>
-Site.validatorPostcodeMethod(); 
-
-var btnToggle;
-
-function updateAddressFields(address) {
-	if ($('input#postcode').valid() && $('input#postcode').val().length > 4) {
-		$.ajax({
-			url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+'&key=AIzaSyC_QDIIVFCWhNpOZrzxp1D2gMo5r18v6r8',
-			timeout: 100,
-			success: function(data) {
-				if (data.status == "200" || data.status == "OK") {
-					if (data.results[0].types[0] == "postal_code") {
-						$('input#address_2').val(data.results[0].address_components[1].long_name);
-						$('input#town').val(data.results[0].address_components[2].long_name);
-						$('input#city').val(data.results[0].address_components[3].long_name);
-					}
-				}
-			}
-		});
-	}
-}
-
-$(document).ready(function() {
-	// Validation
-	$("#form-addClient").validate({
-	    ignore: "input.address_input:hidden",
-		rules: {
-			'client[]': {
-				required: true,
-			},
-			address_1: {
-				required: true,
-			},
-			address_2: {
-				required: true,
-			},
-			city: {
-				required: true,
-			},
-			postcode: {
-				postcode: true
-			},
-			email: {
-				required: true,
-				email: true
-			},
-			quote: {
-				digits: true
-			},
-		}
-	});
-
-	// Find Address Using Postcode Button
-	$('.btn-find-postcode').on("click", function() {
-		updateAddressFields($('input#postcode').val());
-		$('.form-group_address.form-group_address_postcode-only').removeClass('form-group_address_postcode-only');
-		$("#form-addClient").validate();
-	});
-
-	// Re-order clients
-	Sortable.create($('.clients')[0], {
-		  ghostClass: "client-ghost"
-	});
-
-	// Add/Remove Client Button Variables
-	clientResultUID = 1;
-	clientCount = 1;
-
-	// Remove Client
-	$('.client .client_btn-remove').click(function() {
-		if (clientCount > 1) {
-			$(this).closest('.client').slideUp(function() { $(this).remove(); });
-			clientCount--;
-		}
-	});
-
-	// Add Client
-	$('.client .client_btn-add, .btn-add-client').click(function() {
-		if (clientCount <= 9) {
-			clientCount++;
-			clientResultUID++;
-			clonedClient = $('.clients .client:first').clone(true);
-
-			// Update Container ID
-			$(clonedClient).attr('id','client_'+clientResultUID);
-			// Reset Input Values
-			$(clonedClient).find('input').val('');
-			// Update Name ID's
-			$(clonedClient).find('#client_1_name').attr('id','client_'+clientResultUID+'_name');
-			$(clonedClient).find('[for=client_1_name]').attr('for','client_'+clientResultUID+'_name');
-			// Update Role ID's
-			$(clonedClient).find('#client_1_role').attr('id','client_'+clientResultUID+'_role');
-			$(clonedClient).find('[for=client_1_role]').attr('for','client_'+clientResultUID+'_role');
-
-			cloned = null;
-
-			if ($(this).hasClass('client_btn-add')) {
-				cloned = $(this).closest('.client').after(clonedClient).next();
-				cloned.slideDown();
-			}
-			else {
-				cloned = clonedClient.appendTo('.clients');
-				cloned.slideDown();
-			}
-
-			// Add validation rule
-			console.log(cloned);
-			cloned.rules('add', {'required': true});
-		}
-		else {
-			sweetAlert('You can only have 10 clients per project');
-		}
-	});
-
-	// Client
-	$('input.client-search_input').on('input', function() {
-		search_results = $(this).next('.client-search_results');
-		search_results_ul = search_results.find('ul');
-		if ($(this).val().length > 2) {
-			$.ajax({
-			    type: 'GET',
-			    url: '/api/search/client/'+encodeURI($(this).val()),
-			    success: function (data) {
-			    	if (data.length) {
- 						search_results_ul.empty();
-				        for (var i = 0; i < data.length; i++) {		        	
-				        	search_results_ul.append('<li class="result" data-client-id="'+data[i].id+'">'+data[i].firstname+' '+data[i].surname+'</li>');
-				        }
-		        		search_results.show();
-			    	}
-			    	else {
-				        search_results.hide();
-			    	}
-			    }
-			});
-		}
-		else {
-	        search_results.hide();
-		}
-	});
-
-	// Client Search - Focus Out
-	$('input.client-search_input').on('focusout', function(e) {
-		resultsContainer = $(this).parent('.client-search').find('.client-search_results').first();
-		resultsContainer.fadeOut(function() {
-	 		resultsContainer.find('ul').empty();
-		});
-	});
-
-	// Client Search - Results - Select Option
-	$(document).on("click", '.result', function(e) { 
-		// Select fields
-		searchField = $(this).closest('.client-search').find('.client-search_input').first();
-		clientIdField = $(this).closest('.client-search').next('.client-id-field');
-		// Update fields
-		clientIdField.val($(this).data('client-id'));
-		searchField.val($(this).text());
-		// Refocus on search box
-		searchField.focus();
-	});
-
-	// Hides element with id specified using data-show-id atribute
-	$('.btn-toggle').click(function(e) {
-		e.preventDefault();
-		if (btnToggle != null) {
-			btnToggle.slideUp();
-		}
-		if ($(this).data('show-id') != "") {
-			btnToggle = $("#"+$(this).data('show-id')).slideToggle();
-		}
-	});
-
-	// Check useClientAddress checkbox
-	$('.btn-ClientAddress').click(function() {
-		$('input#useClientAddress_checkbox').prop('checked', true);
-	});
-
-	// Check useClientAddress checkbox and removes form-group_address_postcode-only
-	$('.btn-addressForm-fullAddress').click(function() {
-		$('input#useClientAddress_checkbox').prop('checked', false);
-		$('.form-group_address.form-group_address_postcode-only').removeClass('form-group_address_postcode-only');
-	});
-
-	// Check useClientAddress checkbox and removes form-group_address_postcode-only
-	$('.btn-addressForm-postcode').click(function() {
-		$('input#useClientAddress_checkbox').prop('checked', false);
-		$('.form-group_address').addClass('form-group_address_postcode-only');
-	});
-
-});
-</script>
+<script src="/assets/js/plugins/rsearch.js" type="text/javascript"></script>
+<script src="/assets/js/addJob.js" type="text/javascript"></script>
 @endsection

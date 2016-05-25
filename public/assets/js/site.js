@@ -57,7 +57,6 @@
 		},
 		mobileMenu: function() {
 			var subMenuActive = false;
-			
 			// Open menu
 			function openMenu() {
 				if ($('.mobile-menu').is(':visible') == false) {
@@ -70,7 +69,6 @@
 					});
 				}
 			}
-
 			// Close menu
 			function closeMenu() {
 			  $('.mobile-menu').fadeOut(800).removeClass('mobile-menu-active');
@@ -81,14 +79,12 @@
 					'overflow': ''
 				});  
 			}
-
 			// Close submenu
 			function closeSubmenu() {
 				$('.mobile-menu .header_nav > li').removeAttr('style');
 				$('.mobile-menu .header_nav > li ul').slideUp().removeClass('animated bounceInUp submenu-active');
 				subMenuActive = false;
 			}
-
 			// Open menu button
 			$(".header_mobileMenuToggle").click(function() {
 				openMenu();
@@ -127,7 +123,6 @@
 				}
 			});
 		},
-
 		tabs: function() { 
 			$('.tabs .tab_select-btn').click(function(e) {
 				e.preventDefault();
@@ -145,7 +140,6 @@
 				}
 			})
 		},
-
 		parallaxBanner: function() {
 			$(window).on("load", function() {
 				var height = $(".page_banner img").height();
@@ -219,6 +213,19 @@
 				$('.clients').find('.client').fadeIn();
 			});
 		},
+		btnToggle: function() {
+			// Hides element with id specified using data-show-id atribute
+			var btnToggle;
+			$('.btn-toggle').click(function(e) {
+				e.preventDefault();
+				if (btnToggle != null) {
+					btnToggle.slideUp();
+				}
+				if ($(this).data('show-id') != "") {
+					btnToggle = $("#"+$(this).data('show-id')).slideToggle();
+				}
+			});
+		},
 		validatorPostcodeMethod: function() {
 			// UK Postcode
 			jQuery.validator.addMethod("postcode", function(value, element) {
@@ -234,15 +241,8 @@
 	}
 	// Run
 	$(function(){
-		// Site.placeholdertext(); 
-		// Site.contactComboBox(); 
-		// Site.contactBoxExpand(); 
 		Site.tabs();
 		Site.initAnimateCSS();
-		// Site.initSelectboxIt(); 
-		// Site.mobileMenu(); 
-		// Site.parallaxBanner(); 
-		// Site.homePageNewsSlider();
-		// Site.addNewClient();
+		Site.btnToggle();
 	});
 }(jQuery));

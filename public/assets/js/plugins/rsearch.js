@@ -71,20 +71,6 @@
             }
         }, options);
 
-		/**
-		 * Methods
-		 */
-
-        function selectSearchItem(searchItem) {
-        	input.val(searchItem.data('searchable-value'));
-			searchableField.val(searchItem.text());
-			input.focus();
-
-			resultsContainer.fadeOut(function() {
- 				resultsContainer.empty();
-			});
-        }
-
         /**
          * Inputs
          */
@@ -100,27 +86,29 @@
 			.attr('id', settings.results.container.id)
 			.css('marginTop', (parseInt(input.css('marginBottom')) > 0) ? 0-parseInt(input.css('marginBottom')) : 0)
 			.appendTo(container)
-			.hide()
+			.hide();
 
         // Search field
-        var searchableField = $(this).clone()
+        var searchableField = $(this).clone(true)
 	    	.attr('id', 'searchable_'+input.attr('id'))
 	    	.attr('class', input.attr('class') ? 'searchable_'+input.attr('class') : '')
 	    	.attr('name', input.attr('class') ? 'searchable_'+input.attr('class') : '')
 	    	.prop('autocomplete', 'off')
-	    	.removeProp('for')
+	    	.removeProp('for');
 
-	   	// Hide input for backend
-		input
-	        .hide()
-	        .prop('hidden', 'hidden')
-	        .removeProp('placeholder')
-	        .before(searchableField);
 
 		// Searchable result item
 		var resultsItem = settings.results.item.template ? $(settings.results.item.template) : $("<"+settings.results.item.element+"></"+settings.results.item.element+">")
 			.addClass(settings.results.item.class)
 			.attr('id', settings.results.item.id);
+
+	   	// Hide input for backend
+		input
+	        .hide()
+	        .prop('hidden', 'hidden')
+	        .prop('tabindex', '-1')
+	        .prop('placeholder', '')
+	        .before(searchableField);
 
 		/**
 		 * Events
@@ -138,7 +126,7 @@
 				    	if (data.length) {
 	 						resultsContainer.empty();
 					        for (var i = 0; i < data.length; i++) {		        	
-					        	resultsContainer.append(resultsItem.text(data[i][settings.results.item.dataAccessors.title]).data('searchable-value', data[i][settings.results.item.dataAccessors.value]).clone(true));
+					        	resultsContainer.append(resultsItem.text(data[i][settings.results.item.dataAccessors.title]).attr('data-searchable-value', data[i][settings.results.item.dataAccessors.value]).clone(true));
 					        }
 			        		resultsContainer.show();
 				    	}
@@ -234,6 +222,22 @@
 		        return false;
 		    }
 		});
-        return this;
-    };
+		
+		/**
+		 * Methods
+		 */
+
+		function selectSearchItem(searchItem) {
+			input.val(searchItem.data('searchable-value'));
+			searchableField.focus();
+			searchableField.val(searchItem.text());
+
+			resultsContainer.fadeOut(function() {
+					resultsContainer.empty();
+			});
+		}
+
+		return this;
+
+		};
 }( jQuery ));

@@ -8,15 +8,15 @@ use App\Jobs\GetLocationImage as GetLocationImage;
 class Job extends Model
 {
 	protected $dates = ['deleted_at'];
-	protected $fillable = array('client_title' ,'client_firstname' ,'client_surname' ,'address_1' ,'address_2' ,'town' ,'city' ,'postcode' ,'quote' ,'email' ,'landline' ,'mobile', 'location_x', 'location_y');
+	protected $fillable = array('title', 'image', 'date', 'primary_role', 'job_type', 'address_1', 'address_2', 'town', 'city', 'postcode', 'quote', 'email', 'landline', 'mobile', 'lat', 'lng');
 
-	public function users() {
-        return $this->hasMany('App\JobClient');
+	public function clients() {
+		return $this->belongsToMany('App\Client', 'job_clients');
 	}
 
 	public function getImage() {
-		if (!empty($this->location_x) && !empty($this->location_y)) {
-			$img = new GetLocationImage(array($this->location_x, $this->location_y));
+		if (!empty($this->lat) && !empty($this->lng)) {
+			$img = new GetLocationImage(array($this->lat, $this->lng));
 			return $img->data;
 		}
 		return false;

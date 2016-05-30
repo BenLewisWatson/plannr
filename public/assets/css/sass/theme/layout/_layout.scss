@@ -199,6 +199,14 @@ a.btn, .btn, .btn:focus, .btn:visited {
 			background-color: $bodyBg;
 		}
 	}
+	&.btn-error {
+		background-color: $error;
+		color: lighten($error, 40%);
+	}
+	&.btn-light {
+		background-color: $brandcolor02;
+		color: lighten($brandcolor02, 40%);
+	}
 	&.btn-sm {
 		@include font-size(14);
 	}

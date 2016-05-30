@@ -4,24 +4,29 @@
 			<div class="col col4-24">
 				<div class="col-inner">
 					<div class="header_logo">
-						<img src="/assets/img/plannr.svg" alt="Plannr">
+						<a href="/">
+							<img src="/assets/img/plannr.svg" alt="Plannr">
+						</a>
 					</div>
 				</div>
 			</div>
 			<div class="col col16-24 col-search">
 				<div class="col-inner">
 					<div class="rel">
-						<input type="text" class="search header_search search-global" placeholder="Search Jobs">
-						<div class="btn-search">
-							<i class="fa fa-search"></i>
-						</div>
+						<form action="/search" method="POST">
+							{{ csrf_field() }}
+							<input type="text" name="header_search_input" class="search header_search search-global" placeholder="Search Clients">
+							<button class="btn-search">
+								<i class="fa fa-search"></i>
+							</button>
+						</form>
 					</div>
 				</div>
 			</div>
 			<div class="col col2-24">
 				<div class="col-inner">
 					<div class="tr">
-						<a href="/auth/signin" class="btn">Sign In</a>
+						{{-- <a href="/auth/signin" class="btn">Sign In</a> --}}
 					</div>
 				</div>
 			</div>

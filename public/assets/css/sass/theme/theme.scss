@@ -11,8 +11,10 @@
 // Plugin base styles
 
     @import "plugins/slick";
+    @import "plugins/trumbowyg";
     @import "plugins/animate";
     @import "plugins/dropzone";
+    @import "plugins/rome";
     @import "plugins/combobox";
     @import "plugins/sweetalert";
     @import "plugins/hierarchical-display";
@@ -34,5 +36,6 @@
     @import "partials/mobile-menu";
     @import "partials/searchable";
     @import "partials/add-job";
+    @import "partials/job-map";
     @import "partials/responsive";
 

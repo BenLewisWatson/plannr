@@ -7,18 +7,25 @@
 
 @section('sidebar_right')
 	<div class="rel">
-		<div class="box m0 mb">
-			<a href="/" class="btn-add-client">
-				<i class="fa fa-plus"></i> <span>Create Job</span>
-			</a>
-		</div>
+		<a href="/job/create" class="btn-add-client">
+			<div class="box m0 mb">
+					<i class="fa fa-plus"></i> <span>Create Job</span>
+			</div>
+		</a>
 	</div>
 	<div class="rel">
-		<div class="box m0">
-			<a href="/" class="btn-add-client">
-				<i class="fa fa-plus"></i> <span>Add Client</span>
-			</a>
-		</div>
+		<a href="/client/create" class="btn-add-client">
+			<div class="box m0 mb">
+					<i class="fa fa-plus"></i> <span>Create Client</span>
+			</div>
+		</a>
+	</div>
+	<div class="rel">
+		<a href="/role/create" class="btn-add-client">
+			<div class="box m0">
+					<i class="fa fa-plus"></i> <span>Create Role</span>
+			</div>
+		</a>
 	</div>
 @endsection
 
@@ -29,26 +36,25 @@
 		<div class="col-inner">
 		    <div class="box box-hero box-job">
 		        <div class="box_thumbnail">
-		        <?php $j->getImage(); ?>
-	        	<!-- <img src="https://photos-0.carwow.co.uk/models/430x294/A3-SB-18_0.jpg" alt="Temp"> -->
+		        <?php // $j->getImage(); ?>
 	        	<div class="box_thumbnail_text">
-	        		{{ $j->client_firstname.' '.$j->client_surname }}
+	        		{{ $j->clients->first()->firstname.' '.$j->clients->first()->surname }}
 	        	</div>
 		        </div>
 	        	<div class="box_header cf">
 		        	<div class="fl">
 		        		<div class="box_title">
-				        	Job: {{ $j->id }}
+				        	{{ $j->clients->first()->firstname.' '.$j->clients->first()->surname }}
 				        </div>
 				        <div class="box-job_date">
-				        	<i class="fa fa-calendar-o"></i> 21st Jan 2016
+				        	<i class="fa fa-calendar-o"></i> 26th May 2016
 				        </div>
 		        	</div>
-		        	<div class="fr">
+		        	{{-- <div class="fr">
 		        		<div class="box-job_loc">
 		        			<i class="fa fa-map-marker"></i> 12 Mi
 		        		</div>
-		        	</div>
+		        	</div> --}}
 	        	</div>
 		        <div class="box_main">
 		        	<div class="box_content">
@@ -56,8 +62,8 @@
 		        	</div>
 		        </div>
 		        <div class="box_footer">
-		        	<a href="" class="btn btn-txt">More Info</a>
-		        	<a href="" class="btn btn-txt">Navigate</a>
+		        	<a href="/job/{{ $j->id }}" class="btn btn-txt">More Info</a>
+		        	{{-- <a href="" class="btn btn-txt">Navigate</a> --}}
 		        </div>
 		    </div>
 		</div>

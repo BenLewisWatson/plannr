@@ -1,5 +1,5 @@
 @extends('index')
-@section('page_title', 'Add New Client')
+@section('page_title', 'Add New Role')
 
 @section('content')
 <style>
@@ -41,19 +41,5 @@
 
 @section('scripts')
 <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
-<script src="/assets/js/plugins/rsearch.js" type="text/javascript"></script>
-<script>
-$(document).ready(function() {
-	$('input#title').searchable({ search: {url: '/api/search/client/'} });
-	$('input.header_search.search-global').searchable({ search: { url: '/api/search/client/'} });
-
-	$('#create-role-form').validate({
-		rules: {	
-			title: {
-				required: true
-			}
-		}
-	});
-});
-</script>
+<script src="/assets/js/addRole.js" type="text/javascript"></script>
 @endsection

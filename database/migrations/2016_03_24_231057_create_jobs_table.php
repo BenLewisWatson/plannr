@@ -17,6 +17,7 @@ class CreateJobsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->binary('image');
+            $table->timestamp('date');
             // Job Roles and Types
             $table->string('primary_role');
             $table->string('job_type');
@@ -38,9 +39,9 @@ class CreateJobsTable extends Migration
             $table->string('postcode');
             $table->string('country');
             // Geociding Information
-            $table->double('lat');
-            $table->double('lng');
-            $table->double('zoom');
+            $table->string('lat');
+            $table->string('lng');
+            $table->string('zoom');
             // Timestamps
             $table->timestamps();
         });

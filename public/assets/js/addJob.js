@@ -2,9 +2,65 @@
 	// JS
 	window.addJob = {
 		init: function() {
+			function toTimestamp(strDate){
+			   var datum = Date.parse(strDate);
+			   return datum/1000;
+			}
+
+			datepicker = rome($('input.date-picker_input')[0], { weekStart: 1 });
+
+			datepicker.on('data', function() {
+				var unixDate = toTimestamp($('input.date-picker_input').val());
+				if(!isNaN(unixDate)) {
+					$('input.date').val(unixDate);
+				}
+			});
+
 			// Create clone of addd client section
 			client = $('.clients .client:first').clone(true);
 			$('input.client-id-field').searchable({ search: {url: '/api/search/client/'}});
+			$('input.client-role-field').searchable({
+				// Stupid temp solution
+				search: {
+					url: '/api/search/role/',
+					min: 1
+				},
+				results: {
+	            	container: {
+	            		element: 'ul',
+	            		class: 'searchable_results',
+	            		id: '',
+	            	},
+	            	item: {
+	            		template: '',
+	            		element: 'li',
+	            		class: 'searchable_results_item',
+	            		id: '',
+	            		type: 'link',
+	            		dataAccessors: {
+	            			value: 'id',
+	            			title: 'title',
+	            			description: 'desc',
+	            			image: 'image',
+	            			link: 'url'
+	            		},
+	            		events: {
+	            			click: {
+	            				cancel: false,
+	            				handler: ''
+	            			},
+	            			hover: {
+	            				cancel: false,
+	            				handler: ''
+	            			},
+	            			select: {
+	            				cancel: false,
+	            				handler: ''
+	            			},
+	            		}
+	            	}
+	            }
+			});
 		},    
 		addClient: function() {
 			// Add/Remove Client Button Variables
@@ -33,16 +89,65 @@
 					var cloned;
 
 					if ($(this).hasClass('client_btn-add')) {
+						// Insert cloned client after the one clicked
 						cloned = $(this).closest('.client').after(clonedClient).next();
-						clonedField = clonedClient.find('.client-id-field');
-						clonedField.searchable({ search: {url: '/api/search/client/'}});
-						clonedField.rules('add', {'required': true});
+						
+						// Select client search field
+						clientField = clonedClient.find('.client-id-field');
+						clientField.searchable({ search: {url: '/api/search/client/'}});
+						clientField.rules('add', {'required': true});
+
+						console.log('Test');
+
+						// Select client role search field
+						roleField = clonedClient.find('.client-role-field');
+						roleField.searchable({
+							// Stupid temp solution
+							search: {
+								url: '/api/search/role/',
+								min: 1
+							},
+							results: {
+				            	container: {
+				            		element: 'ul',
+				            		class: 'searchable_results',
+				            		id: '',
+				            	},
+				            	item: {
+				            		template: '',
+				            		element: 'li',
+				            		class: 'searchable_results_item',
+				            		id: '',
+				            		type: 'link',
+				            		dataAccessors: {
+				            			value: 'id',
+				            			title: 'title',
+				            			description: 'desc',
+				            			image: 'image',
+				            			link: 'url'
+				            		},
+				            		events: {
+				            			click: {
+				            				cancel: false,
+				            				handler: ''
+				            			},
+				            			hover: {
+				            				cancel: false,
+				            				handler: ''
+				            			},
+				            			select: {
+				            				cancel: false,
+				            				handler: ''
+				            			},
+				            		}
+				            	}
+				            }
+						});
+						roleField.rules('add', {'required': true});
+						
+						// Show client
 						cloned.slideDown();
-					}
-					else {
-						cloned = clonedClient.appendTo('.clients');
-						cloned.slideDown();
-					}
+					}	
 
 					// Add validation rule
 					console.log(cloned);
@@ -109,10 +214,13 @@
 			});
 		},
 		validate: function() {
-			$("#form-addClient").validate({
-			    ignore: "input.address_input:hidden",
+			$("form#form-addJob").validate({
+			    ignore: "input.address_input:hidden, .wysiwyg",
 				rules: {
 					'client[]': {
+						required: true,
+					},
+					date: {
 						required: true,
 					},
 					address_1: {
@@ -127,12 +235,11 @@
 					postcode: {
 						postcode: true
 					},
-					email: {
-						required: true,
-						email: true
+					postcode: {
+						postcode: true
 					},
 					quote: {
-						digits: true
+						currency: true
 					},
 				}
 			});
@@ -142,7 +249,8 @@
 	$(function(){
 		addJob.init(); 
 		addJob.addClient(); 
-		addJob.cllientAddressBtn(); 
 		addJob.validate(); 
+		// addJob.cllientAddressBtn(); 
+		// addJob.postcodeFindAddress(); 
 	});
 }(jQuery));

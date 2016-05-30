@@ -37,7 +37,8 @@
 
 <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.min.js" integrity="sha256-mFypf4R+nyQVTrc8dBd0DKddGB5AedThU73sLmLWdc0=" crossorigin="anonymous"></script>
-<script src="/assets/js/combobox.js" type="text/javascript"></script>
+<script src="/assets/js/plugins/rsearch.js" type="text/javascript"></script>
+<script src="/assets/js/plugins/trumbowyg.min.js" type="text/javascript"></script>
 <script src="/assets/js/plugins/sweetalert.min.js" type="text/javascript"></script>
 
 <script src="/assets/js/site.js" type="text/javascript"></script>

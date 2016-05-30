@@ -52,8 +52,34 @@
 			    }
 			});
 		},
+		initWysiwyg: function() {
+			$('textarea.wysiwyg').trumbowyg({
+				    btns: [
+						['formatting'],
+						'btnGrp-semantic',
+						['link'],
+						'btnGrp-justify',
+						'btnGrp-lists',
+						['horizontalRule'],
+						['removeformat'],
+				    ]
+			});
+		},
+		inputCurrency: function() {
+			$('.input-currency').on('input change', function() {
+			    this.value = this.value.replace(/[^0-9\.]/g,''); 
+			});
+
+			jQuery.validator.addMethod("currency", function(value, element) {
+			  	return this.optional(element) ||  /(?=.)^\$?(([1-9][0-9]{0,2}(,[0-9]{3})*)|[0-9]+)?(\.[0-9]{1,2})?$/.test(value);
+			}, "Please enter a valid amount");
+			
+		},
 		stickyHeader: function() {
 			$("#header").sticky({topSpacing:0});
+		},
+		headerSearch: function() {
+			$(".header_search").searchable({ search: {url: '/api/search/client/'}});
 		},
 		mobileMenu: function() {
 			var subMenuActive = false;
@@ -241,8 +267,11 @@
 	}
 	// Run
 	$(function(){
+		Site.headerSearch();
 		Site.tabs();
 		Site.initAnimateCSS();
+		Site.initWysiwyg();
+		Site.inputCurrency();
 		Site.btnToggle();
 	});
 }(jQuery));

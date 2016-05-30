@@ -29,13 +29,13 @@ class ClientController extends Controller
             'title' => 'required|min:2|max:10',
             'firstname' => 'required',
             'surname' => 'required',
-            'email' => 'email|unique:clients',
+            'email' => 'required|email|unique:clients',
             'address_1' => 'required',
             'address_2' => 'required',
             'city' => 'required',
         ]);
 
-        $usePostcode = $request->input('usePostcode') == 'on' ? true : false;
+        // $usePostcode = $request->input('usePostcode') == 'on' ? true : false;
 
         $address_array = array($request->input('address_1'), $request->input('address_2'), $request->input('address_3'), $request->input('town'), $request->input('city'), $request->input('county'), $request->input('postcode'), $request->input('country'));
         $address_string = implode(' ', $address_array);
@@ -63,14 +63,14 @@ class ClientController extends Controller
                 'title'     => $request->input('title'),
                 'firstname' => $request->input('firstname'),
                 'surname'   => $request->input('surname'),
-                'address_1' => $usePostcode ? $address['street_number'] : $request->input('address_1'),
-                'address_2' => $usePostcode ? $address['street_number'] : $request->input('address_2'),
-                'address_3' => $usePostcode ? $address['street_number'] : $request->input('address_3'),
-                'town'      => $usePostcode ? $address['street_number'] : $request->input('town'),
-                'city'      => $usePostcode ? $address['street_number'] : $request->input('city'),
-                'county'    => $usePostcode ? $address['street_number'] : $request->input('county'),
-                'postcode'  => $usePostcode ? $address['street_number'] : $request->input('postcode'),
-                'country'   => $usePostcode ? $address['street_number'] : $request->input('country'),
+                'address_1' => $request->input('address_1'),
+                'address_2' => $request->input('address_2'),
+                'address_3' => $request->input('address_3'),
+                'town'      => $request->input('town'),
+                'city'      => $request->input('city'),
+                'county'    => $request->input('county'),
+                'postcode'  => $request->input('postcode'),
+                'country'   => $request->input('country'),
                 'lat'       => $latitude,
                 'lng'       => $longitude,
                 'zoom'      => $request->input('zoom'),

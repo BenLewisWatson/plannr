@@ -4,6 +4,9 @@
 			display: none;
 			transition: background-color 1s ease;
 			background-color: rgba(251, 251, 251, 0);
+			input {
+				margin: 5px 0;
+			}
 			&:first-child {
 				background-color: rgba(251, 251, 251, 1);
 			}
@@ -53,22 +56,14 @@
 	display: none;
 }
 
-.form-group_address.form-group_address_postcode-only {
-	.col {
-		display: none;
-		&.col-postcode {
-			display: block;
-		}
-	}
-	.btn.btn-find-postcode {
-		display: block;
-	}
-}
-
-.client-search_input ~ .client-search_results {
-	display: none;
-}
-
-#useClientAddress, #addressForm {
-	display: none;
-}
+// .form-group_address.form-group_address_postcode-only {
+// 	.col {
+// 		display: none;
+// 		&.col-postcode {
+// 			display: block;
+// 		}
+// 	}
+// 	.btn.btn-find-postcode {
+// 		display: block;
+// 	}
+// }

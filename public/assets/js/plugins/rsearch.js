@@ -116,6 +116,7 @@
 		
 		// Search event
 		searchableField.on('input focus', function(e) {
+        	input.val("");
 			if (searchableField.val().length > 2) {
 				query = settings.search.url+encodeURI($(this).val());
 				query += settings.search.params != "" ? "?"+settings.search.params : "";
@@ -145,6 +146,9 @@
         searchableField.on('focusout', function(e) {
 			resultsContainer.fadeOut(function() {
  				resultsContainer.empty();
+ 				if (input.val() == "") {
+ 					searchableField.val("");
+ 				}
 			});
 		});
 
@@ -229,9 +233,7 @@
 
 		function selectSearchItem(searchItem) {
 			input.val(searchItem.data('searchable-value'));
-			searchableField.focus();
 			searchableField.val(searchItem.text());
-
 			resultsContainer.fadeOut(function() {
 					resultsContainer.empty();
 			});

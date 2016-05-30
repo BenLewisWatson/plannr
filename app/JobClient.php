@@ -11,14 +11,14 @@ class JobClient extends Model
     ];
 
     public function job() {
-    	$this->belongsTo('\app\Job');
+    	return $this->belongsTo('\app\Job');
     }
 
     public function client() {
-    	$this->hasOne('\app\Client');
+    	return $this->hasOne('\app\Client');
     }
 
     public function role() {
-    	$this->hasOne('\app\Role');
+    	return $this->hasOne('\app\Role');
     }
 }

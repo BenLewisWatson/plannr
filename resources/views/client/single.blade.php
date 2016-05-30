@@ -3,6 +3,10 @@
 @extends('index')
 
 @section('content')
+<div class="controls tr">
+	<a href="/job/delete/1" class="btn btn-light"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Save Changes</a>
+	<a href="/job/delete/1" class="btn btn-error"><i class="fa fa-trash fa-fw"></i> Delete Job</a>
+</div>
 <div class="tabs well-light">
 	<div class="tab_header cf">
 		<a href="javascript:void(0)" class="tab_select-btn tab_select-btn-active" data-tab-id="general"><i class="fa fa-user fa-fw"></i> General</a>
